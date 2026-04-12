@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import validator, { trim } from "validator";
+import validator from "validator";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -32,10 +32,6 @@ const userSchema = new mongoose.Schema(
       required: true,
       min: 8,
       trim: true,
-      validate: {
-        validator: validator.toLowerCase().includes("password"),
-        message: `Password cannot contain "password"`,
-      },
     },
     avatar: {
       type: String,
@@ -46,6 +42,23 @@ const userSchema = new mongoose.Schema(
     timestamps: true,
   },
 );
+
+// 🔥 HASH PASSWORD BEFORE SAVE
+userSchema.pre("save", async function (next) {
+  const user = this;
+  // Only hash if password is modified
+  if (!user.isModified("password")) {
+    return next();
+  }
+
+  // Generate salt
+  const salt = await bcrypt.genSalt(10);
+
+  // Hash password
+  user.password = await bcrypt.hash(user.password, salt);
+
+  next();
+});
 
 const User = mongoose.model("User", userSchema);
 export default User;
