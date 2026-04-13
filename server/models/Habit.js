@@ -48,6 +48,18 @@ const habitSchema = new mongoose.Schema(
     // Track when user succeeded
     completedAt: Date,
 
+    // Number of wins
+    wins: {
+      type: Number,
+      default: 0,
+    },
+
+    // Number of losses
+    losses: {
+      type: Number,
+      default: 0,
+    },
+
     // 🔥 NEW: Track streak
     streak: {
       type: Number,

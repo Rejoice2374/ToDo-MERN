@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
+import habitRoutes from "./routes/habitRoutes.js";
 
 dotenv.config();
 connectDB();
@@ -22,3 +23,4 @@ app.get("/", (req, res) => {
   res.send("This is the API endpoint for the NoDo app.");
 });
 app.use("/api/auth", authRoutes);
+app.use("/api/habits", habitRoutes);
