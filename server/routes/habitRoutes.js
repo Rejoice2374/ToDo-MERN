@@ -5,6 +5,7 @@ import {
   updateHabitStatus,
   deleteHabit,
   updateHabit,
+  getHabitStats,
 } from "../controllers/habitController.js";
 
 import protect from "../middleware/authMiddleware.js";
@@ -16,5 +17,6 @@ router.get("/", protect, getHabits);
 router.put("/:id/status", protect, updateHabitStatus);
 router.put("/:id", protect, updateHabit);
 router.delete("/:id", protect, deleteHabit);
+router.get("/stats", protect, getHabitStats);
 
 export default router;
