@@ -20,58 +20,25 @@ app.listen(PORT, () => {
 
 // Routes
 app.get("/", (req, res) => {
-  res.json({
-    message: "🚀 Welcome to the NoDo API",
-    description: "An API to help users fight bad habits and track progress",
-
-    endpoints: {
-      auth: {
-        register: {
-          method: "POST",
-          url: "/api/users/register",
-          description: "Register a new user",
-        },
-        login: {
-          method: "POST",
-          url: "/api/users/login",
-          description: "Login user and get token",
-        },
-      },
-
-      habits: {
-        createHabit: {
-          method: "POST",
-          url: "/api/habits",
-          description: "Create a new habit",
-        },
-        getHabits: {
-          method: "GET",
-          url: "/api/habits",
-          description: "Get all habits for logged-in user",
-        },
-        updateHabit: {
-          method: "PUT",
-          url: "/api/habits/:id",
-          description: "Update habit details",
-        },
-        updateStatus: {
-          method: "PUT",
-          url: "/api/habits/:id/status",
-          description: "Update habit status (won, conceded, fighting)",
-        },
-        deleteHabit: {
-          method: "DELETE",
-          url: "/api/habits/:id",
-          description: "Delete a habit",
-        },
-        stats: {
-          method: "GET",
-          url: "/api/habits/stats",
-          description: "Get dashboard statistics",
-        },
-      },
-    },
-  });
+  res.send(`
+    <h1>🚀 Welcome to the NoDo API</h1>
+    <p>An API to help users fight bad habits and track progress</p>
+    <h2>Endpoints</h2>
+    <h3>Authentication</h3>
+    <ul>
+      <li><strong>Register:</strong> POST<br> <i>/api/users/register</i></li>
+      <li><strong>Login:</strong> POST<br> <i>/api/users/login</i></li>
+    </ul>
+    <h3>Habits</h3>
+    <ul>
+      <li><strong>Create Habit:</strong> POST<br> <i>/api/habits</i></li>
+      <li><strong>Get Habits:</strong> GET <br><i>/api/habits</i></li>
+      <li><strong>Update Habit:</strong> PUT <br><i>/api/habits</i>/:id</li>
+      <li><strong>Update Status:</strong> PUT <br><i>/api/habits</i>/:id/status</li>
+      <li><strong>Delete Habit:</strong> DELETE <br><i>/api/habits</i>/:id</li>
+      <li><strong>Get Stats:</strong> GET <br><i>/api/habits</i>/stats</li>
+    </ul>
+  `);
 });
 app.use("/api/auth", authRoutes);
 app.use("/api/habits", habitRoutes);
