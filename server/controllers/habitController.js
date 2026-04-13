@@ -43,11 +43,13 @@ export const updateHabitStatus = asyncHandler(async (req, res) => {
     return res.status(401).json({ message: "Not authorized" });
   }
 
-  habit.status = status;
+  // habit.status = status;
 
   // 🔥 LOGIC BASED ON STATUS
   if (status === "won") {
     habit.streak += 1;
+    habit.wins += 1;
+    habit.longestStreak = Math.max(habit.longestStreak, habit.streak);
     habit.completedAt = new Date();
   }
 
@@ -102,4 +104,68 @@ export const updateHabit = asyncHandler(async (req, res) => {
   const updatedHabit = await habit.save();
 
   res.json(updatedHabit);
+});
+
+// 📊 Get Dashboard Stats
+export const getHabitStats = asyncHandler(async (req, res) => {
+  const userId = req.user._id;
+
+  // 1️⃣ Fetch all user habits
+  const habits = await Habit.find({ user: userId });
+
+  // 2️⃣ Basic counts
+  const totalHabits = habits.length;
+
+  const fighting = habits.filter((h) => h.status === "fighting").length;
+  const won = habits.filter((h) => h.status === "won").length;
+  const conceded = habits.filter((h) => h.status === "conceded").length;
+
+  // 3️⃣ Performance metrics
+  const totalRelapses = habits.reduce(
+    (acc, h) => acc + (h.relapseCount || 0),
+    0,
+  );
+
+  const totalWins = habits.reduce((acc, h) => acc + (h.wins || 0), 0);
+
+  const longestStreak = habits.reduce(
+    (max, h) => Math.max(max, h.longestStreak || 0),
+    0,
+  );
+
+  // 4️⃣ Due soon (next 3 days)
+  const now = new Date();
+  const threeDaysLater = new Date();
+  threeDaysLater.setDate(now.getDate() + 3);
+
+  const dueSoon = habits.filter(
+    (h) => h.dueDate && h.dueDate <= threeDaysLater,
+  ).length;
+
+  // 5️⃣ Recently relapsed (last 7 days)
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(now.getDate() - 7);
+
+  const recentRelapses = habits.filter(
+    (h) => h.lastRelapseAt && h.lastRelapseAt >= sevenDaysAgo,
+  ).length;
+
+  // 6️⃣ Send response
+  res.json({
+    totalHabits,
+    statusBreakdown: {
+      fighting,
+      won,
+      conceded,
+    },
+    performance: {
+      totalRelapses,
+      totalWins,
+      longestStreak,
+    },
+    insights: {
+      dueSoon,
+      recentRelapses,
+    },
+  });
 });

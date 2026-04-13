@@ -54,14 +54,14 @@ const habitSchema = new mongoose.Schema(
       default: 0,
     },
 
-    // Number of losses
-    losses: {
+    // Track streak
+    streak: {
       type: Number,
       default: 0,
     },
 
-    // 🔥 NEW: Track streak
-    streak: {
+    // Longest streak ever achieved
+    longestStreak: {
       type: Number,
       default: 0,
     },

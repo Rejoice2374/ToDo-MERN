@@ -1,0 +1,6 @@
+const now = new Date();
+const threeDaysLater = new Date();
+threeDaysLater.setDate(now.getDate() + 3);
+
+console.log(now);
+console.log(threeDaysLater);
