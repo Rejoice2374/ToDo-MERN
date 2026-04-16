@@ -1,0 +1,73 @@
+import * as React from "react"
+import { Check, ChevronRight } from "lucide-react"
+
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible"
+import {
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarSeparator,
+} from "@/components/ui/sidebar"
+
+const Classifications = ({
+  classifications,
+}: {
+  classifications: {
+    name: string
+    items: string[]
+  }[]
+}) => {
+  return (
+    <>
+      {classifications.map((classification, index) => (
+        <React.Fragment key={classification.name}>
+          <SidebarGroup key={classification.name} className="py-0">
+            <Collapsible
+              defaultOpen={index === 0}
+              className="group/collapsible"
+            >
+              <SidebarGroupLabel
+                asChild
+                className="group/label w-full text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+              >
+                <CollapsibleTrigger>
+                  {classification.name}{" "}
+                  <ChevronRight className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
+                </CollapsibleTrigger>
+              </SidebarGroupLabel>
+              <CollapsibleContent>
+                <SidebarGroupContent>
+                  <SidebarMenu>
+                    {classification.items.map((item, index) => (
+                      <SidebarMenuItem key={item}>
+                        <SidebarMenuButton>
+                          <div
+                            data-active={index < 2}
+                            className="group/calendar-item flex aspect-square size-4 shrink-0 items-center justify-center rounded-sm border border-sidebar-border text-sidebar-primary-foreground data-[active=true]:border-sidebar-primary data-[active=true]:bg-sidebar-primary"
+                          >
+                            <Check className="hidden size-3 group-data-[active=true]/calendar-item:block" />
+                          </div>
+                          {item}
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    ))}
+                  </SidebarMenu>
+                </SidebarGroupContent>
+              </CollapsibleContent>
+            </Collapsible>
+          </SidebarGroup>
+          <SidebarSeparator className="mx-0" />
+        </React.Fragment>
+      ))}
+    </>
+  )
+}
+
+export default Classifications
