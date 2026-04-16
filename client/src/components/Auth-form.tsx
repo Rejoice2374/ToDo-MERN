@@ -14,18 +14,20 @@ import { ArrowRight } from "lucide-react"
 import { useSearchParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import API from "@/services/api"
-import { Toaster } from "@/components/ui/sonner"
 import { toast } from "sonner"
+import { Eye, EyeOff } from "lucide-react"
 
 const AuthForm = ({ className, ...props }: React.ComponentProps<"div">) => {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const type = searchParams.get("type")
+  const [showPassword, setShowPassword] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const [isLogin, setIsLogin] = useState(type === "sign-in")
 
   const toggleMode = () => {
-    const newMode = isLogin ? "signup" : "login"
+    const newMode = isLogin ? "sign-up" : "sign-in"
     setIsLogin(!isLogin)
     navigate(`/auth?type=${newMode}`)
   }
@@ -48,11 +50,14 @@ const AuthForm = ({ className, ...props }: React.ComponentProps<"div">) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
+    setIsLoading(true)
+
     try {
       if (!isLogin) {
         // REGISTER
         if (formData.password !== formData.confirmPassword) {
           toast.error("Passwords do not match")
+          setIsLoading(false)
           return
         }
 
@@ -78,6 +83,7 @@ const AuthForm = ({ className, ...props }: React.ComponentProps<"div">) => {
         navigate("/dashboard")
       }
     } catch (error: any) {
+      setIsLoading(false)
       console.error(error)
       toast.error(error.response?.data?.message || "Something went wrong")
     }
@@ -151,26 +157,50 @@ const AuthForm = ({ className, ...props }: React.ComponentProps<"div">) => {
                 >
                   <Field>
                     <FieldLabel htmlFor="password">Password</FieldLabel>
-                    <Input
-                      id="password"
-                      type="password"
-                      required
-                      onChange={handleChange}
-                      value={formData.password}
-                    />
+                    <div className="relative">
+                      <Input
+                        id="password"
+                        type={showPassword ? "text" : "password"}
+                        required
+                        onChange={handleChange}
+                        value={formData.password}
+                      />
+                      <span
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer text-sm text-muted-foreground"
+                      >
+                        {showPassword ? (
+                          <EyeOff className="h-4 w-4" />
+                        ) : (
+                          <Eye className="h-4 w-4" />
+                        )}
+                      </span>
+                    </div>
                   </Field>
                   {!isLogin && (
                     <Field>
                       <FieldLabel htmlFor="confirm-password">
                         Confirm Password
                       </FieldLabel>
-                      <Input
-                        id="confirmPassword"
-                        type="password"
-                        required
-                        onChange={handleChange}
-                        value={formData.confirmPassword}
-                      />
+                      <div className="relative">
+                        <Input
+                          id="confirmPassword"
+                          type={showPassword ? "text" : "password"}
+                          required
+                          onChange={handleChange}
+                          value={formData.confirmPassword}
+                        />
+                        <span
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer text-sm text-muted-foreground"
+                        >
+                          {showPassword ? (
+                            <EyeOff className="h-4 w-4" />
+                          ) : (
+                            <Eye className="h-4 w-4" />
+                          )}
+                        </span>
+                      </div>
                     </Field>
                   )}
                 </Field>
@@ -179,8 +209,18 @@ const AuthForm = ({ className, ...props }: React.ComponentProps<"div">) => {
                 </FieldDescription>
               </Field>
               <Field>
-                <Button type="submit">
-                  {isLogin ? "Login" : "Create Account"}
+                <Button
+                  type="submit"
+                  disabled={isLoading}
+                  className="cursor-pointer"
+                >
+                  {isLoading
+                    ? isLogin
+                      ? "Logging in..."
+                      : "Creating account..."
+                    : isLogin
+                      ? "Login"
+                      : "Create Account"}
                 </Button>
               </Field>
               <FieldDescription className="text-center">
@@ -230,7 +270,6 @@ const AuthForm = ({ className, ...props }: React.ComponentProps<"div">) => {
         By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
         and <a href="#">Privacy Policy</a>.
       </FieldDescription>
-      <Toaster />
     </div>
   )
 }
