@@ -26,8 +26,8 @@ app.get("/", (req, res) => {
     <h2>Endpoints</h2>
     <h3>Authentication</h3>
     <ul>
-      <li><strong>Register:</strong> POST<br> <i>/api/users/register</i></li>
-      <li><strong>Login:</strong> POST<br> <i>/api/users/login</i></li>
+      <li><strong>Register:</strong> POST<br> <i>/api/auth/register</i></li>
+      <li><strong>Login:</strong> POST<br> <i>/api/auth/login</i></li>
     </ul>
     <h3>Habits</h3>
     <ul>

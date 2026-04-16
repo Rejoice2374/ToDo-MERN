@@ -7,6 +7,8 @@ declare type SearchParamProps = {
 
 // ========================================
 
+declare type AuthFormType = "sign-in" | "sign-up"
+
 declare type SignUpParams = {
   firstName: string
   lastName: string
