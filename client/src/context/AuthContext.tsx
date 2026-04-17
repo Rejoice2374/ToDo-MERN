@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       if (!token) return
 
       try {
-        const res = await API.get("/auth/profile")
+        const res = await API.get("/auth/user")
         setUser(res.data)
       } catch (err) {
         console.error(err)
@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setToken(newToken)
 
     // fetch user after login
-    const res = await API.get("/auth/profile")
+    const res = await API.get("/auth/user")
     setUser(res.data)
   }
 
