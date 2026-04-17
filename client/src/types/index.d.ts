@@ -9,6 +9,17 @@ declare type SearchParamProps = {
 
 declare type AuthFormType = "sign-in" | "sign-up"
 
+declare type Classification = {
+  name: string
+  items: string[]
+}
+
+declare type classificationProps = {
+  classifications: Classification[]
+}
+
+declare type sideBarProps = React.ComponentProps<typeof Sidebar>
+
 declare type SignUpParams = {
   firstName: string
   lastName: string
@@ -24,10 +35,20 @@ declare type LoginUser = {
 declare type User = {
   $id: string
   email: string
-  token: string
   firstName: string
   lastName: string
   avatar: string
+}
+
+declare type Userprops = {
+  user: User
+}
+
+declare type AuthContextType = {
+  user: User | null
+  token: string | null
+  login: (token: string) => Promise<void>
+  logout: () => void
 }
 
 declare type createHabit = {

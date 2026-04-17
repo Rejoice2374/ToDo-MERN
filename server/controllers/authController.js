@@ -65,3 +65,21 @@ export const loginUser = asyncHandler(async (req, res) => {
     token: generateToken(user._id),
   });
 });
+
+// 🔐 Get user profile
+export const getUserProfile = asyncHandler(async (req, res) => {
+  // find user by id and exclude password field
+  const user = await User.findById(req.user._id).select("-password");
+
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+
+  res.json({
+    _id: user._id,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
+    avatar: user.avatar,
+  });
+});

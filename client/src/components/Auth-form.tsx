@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom"
 import API from "@/services/api"
 import { toast } from "sonner"
 import { Eye, EyeOff } from "lucide-react"
+import { useAuth } from "@/context/AuthContext"
 
 const AuthForm = ({ className, ...props }: React.ComponentProps<"div">) => {
   const [searchParams] = useSearchParams()
@@ -23,6 +24,7 @@ const AuthForm = ({ className, ...props }: React.ComponentProps<"div">) => {
   const type = searchParams.get("type")
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const { login } = useAuth()
 
   const [isLogin, setIsLogin] = useState(type === "sign-in")
 
@@ -68,7 +70,7 @@ const AuthForm = ({ className, ...props }: React.ComponentProps<"div">) => {
           password: formData.password,
         })
 
-        localStorage.setItem("token", res.data.token)
+        await login(res.data.token)
         toast.success("Registration successful")
         navigate("/dashboard")
       } else {
@@ -78,7 +80,7 @@ const AuthForm = ({ className, ...props }: React.ComponentProps<"div">) => {
           password: formData.password,
         })
 
-        localStorage.setItem("token", res.data.token)
+        await login(res.data.token)
         toast.success("Login successful")
         navigate("/dashboard")
       }

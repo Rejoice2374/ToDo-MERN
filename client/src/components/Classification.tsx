@@ -16,14 +16,7 @@ import {
   SidebarSeparator,
 } from "@/components/ui/sidebar"
 
-const Classifications = ({
-  classifications,
-}: {
-  classifications: {
-    name: string
-    items: string[]
-  }[]
-}) => {
+const Classifications = ({ classifications }: classificationProps) => {
   return (
     <>
       {classifications.map((classification, index) => (

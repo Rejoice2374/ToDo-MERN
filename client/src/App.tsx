@@ -4,6 +4,7 @@ import Home from "./pages/Home"
 import AuthPage from "./pages/Auth"
 import Dashboard from "./pages/Dashboard"
 import Habits from "./pages/Habits"
+import ProtectedRoute from "./components/ProtectedRoutes"
 import "./index.css"
 
 function App() {
@@ -12,8 +13,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<AuthPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/habits" element={<Habits />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/habits" element={<Habits />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   )

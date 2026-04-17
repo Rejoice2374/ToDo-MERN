@@ -13,14 +13,10 @@ import {
   SidebarRail,
   SidebarSeparator,
 } from "@/components/ui/sidebar"
+import { useAuth } from "@/context/AuthContext"
 
 // This is sample data.
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
   classification: [
     {
       name: "Status",
@@ -37,15 +33,17 @@ const data = {
   ],
 }
 
-const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
+const AppSidebar = ({ ...props }: sideBarProps) => {
+  const { user } = useAuth()
   return (
     <Sidebar {...props}>
       <SidebarHeader className="h-16 border-b border-sidebar-border">
-        <NavUser user={data.user} />
+        {user && <NavUser user={user} />}
+        {/* <NavUser user={user!} /> - This means we are asserting that user is not null or undefined */}
       </SidebarHeader>
       <SidebarContent>
         <SidebarSeparator className="mx-0" />
-        <Classifications calendars={data.classification} />
+        <Classifications classifications={data.classification} />
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>
