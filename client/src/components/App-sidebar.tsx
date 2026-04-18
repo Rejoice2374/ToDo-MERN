@@ -39,7 +39,7 @@ const AppSidebar = ({ ...props }: sideBarProps) => {
     <Sidebar {...props}>
       <SidebarHeader className="h-16 border-b border-sidebar-border">
         {user && <NavUser user={user} />}
-        {/* <NavUser user={user!} /> - This means we are asserting that user is not null or undefined */}
+        {/* <NavUser user={user!} /> - This means we */}
       </SidebarHeader>
       <SidebarContent>
         <SidebarSeparator className="mx-0" />

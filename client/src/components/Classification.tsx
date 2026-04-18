@@ -1,6 +1,6 @@
 import * as React from "react"
-import { Check, ChevronRight } from "lucide-react"
-
+import { ChevronRight } from "lucide-react"
+import { Checkbox } from "@/components/ui/checkbox"
 import {
   Collapsible,
   CollapsibleContent,
@@ -15,6 +15,7 @@ import {
   SidebarMenuItem,
   SidebarSeparator,
 } from "@/components/ui/sidebar"
+import { FieldLabel } from "@/components/ui/field"
 
 const Classifications = ({ classifications }: classificationProps) => {
   return (
@@ -27,10 +28,10 @@ const Classifications = ({ classifications }: classificationProps) => {
               className="group/collapsible"
             >
               <SidebarGroupLabel
-                asChild
+                aschild
                 className="group/label w-full text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
               >
-                <CollapsibleTrigger>
+                <CollapsibleTrigger className="flex items-center rounded-sm px-2 py-1">
                   {classification.name}{" "}
                   <ChevronRight className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
                 </CollapsibleTrigger>
@@ -38,19 +39,19 @@ const Classifications = ({ classifications }: classificationProps) => {
               <CollapsibleContent>
                 <SidebarGroupContent>
                   <SidebarMenu>
-                    {classification.items.map((item, index) => (
-                      <SidebarMenuItem key={item}>
-                        <SidebarMenuButton>
-                          <div
-                            data-active={index < 2}
-                            className="group/calendar-item flex aspect-square size-4 shrink-0 items-center justify-center rounded-sm border border-sidebar-border text-sidebar-primary-foreground data-[active=true]:border-sidebar-primary data-[active=true]:bg-sidebar-primary"
-                          >
-                            <Check className="hidden size-3 group-data-[active=true]/calendar-item:block" />
-                          </div>
-                          {item}
-                        </SidebarMenuButton>
-                      </SidebarMenuItem>
-                    ))}
+                    {classification.items.map((item) => {
+                      const id = `${classification.name}-${item}`
+                      return (
+                        <SidebarMenuItem key={item}>
+                          <SidebarMenuButton>
+                            <Checkbox id={id} name="terms-checkbox-basic" />
+                            <FieldLabel htmlFor={id} className="ml-2">
+                              {item}
+                            </FieldLabel>
+                          </SidebarMenuButton>
+                        </SidebarMenuItem>
+                      )
+                    })}
                   </SidebarMenu>
                 </SidebarGroupContent>
               </CollapsibleContent>
