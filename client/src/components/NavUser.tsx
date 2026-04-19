@@ -4,9 +4,9 @@ import {
   BadgeCheck,
   Bell,
   ChevronsUpDown,
-  CreditCard,
   LogOut,
   Sparkles,
+  UserRound,
 } from "lucide-react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -21,7 +21,6 @@ import {
 } from "@/components/ui/dropdown-menu"
 import {
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
@@ -36,25 +35,23 @@ const NavUser = ({ user }: Userprops) => {
     <SidebarMenu>
       <SidebarMenuItem>
         <DropdownMenu>
-          <DropdownMenuTrigger aschild>
-            <SidebarMenuButton size="lg" aschild>
-              <div className="flex items-center gap-2">
-                <Avatar className="h-8 w-full rounded-lg">
-                  <AvatarImage src={user.avatar} alt={user.firstName} />
-                  <AvatarFallback className="rounded-lg">
-                    {user?.firstName?.[0]}
-                    {user?.lastName?.[0]}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">
-                    {user.firstName} {user.lastName}
-                  </span>
-                  <span className="truncate text-xs">{user.email}</span>
-                </div>
-                <ChevronsUpDown className="ml-auto size-4" />
+          <DropdownMenuTrigger aschild className="w-full">
+            <div className="flex items-center gap-2 p-2">
+              <Avatar className="h-8 w-8 rounded-lg">
+                <AvatarImage src={user.avatar} alt={user.firstName} />
+                <AvatarFallback className="rounded-lg">
+                  {user?.firstName?.[0]}
+                  {user?.lastName?.[0]}
+                </AvatarFallback>
+              </Avatar>
+              <div className="grid flex-1 text-left text-sm leading-tight">
+                <span className="truncate font-medium">
+                  {user.firstName} {user.lastName}
+                </span>
+                <span className="truncate text-xs">{user.email}</span>
               </div>
-            </SidebarMenuButton>
+              <ChevronsUpDown className="ml-auto size-4" />
+            </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent
             className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
@@ -91,12 +88,12 @@ const NavUser = ({ user }: Userprops) => {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <BadgeCheck />
-                Account
+                <UserRound />
+                Profile
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <CreditCard />
-                Billing
+                <BadgeCheck />
+                Badges
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Bell />
