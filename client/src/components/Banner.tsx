@@ -74,12 +74,12 @@ const Banner = () => {
             </motion.div>
           </AnimatePresence>
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <Button className="rounded-2xl bg-white text-indigo-700 hover:bg-white/90">
+            <Button className="rounded-2xl bg-white text-indigo-700 hover:bg-white/60">
               Create Task
             </Button>
             <Button
               variant="outline"
-              className="rounded-2xl border-white bg-transparent text-white hover:bg-white/10"
+              className="rounded-2xl border-white bg-transparent text-white hover:bg-white/50"
             >
               View Tasks
             </Button>
