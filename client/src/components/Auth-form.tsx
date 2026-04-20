@@ -72,7 +72,7 @@ const AuthForm = ({ className, ...props }: React.ComponentProps<"div">) => {
 
         await login(res.data.token)
         toast.success("Registration successful")
-        navigate("/dashboard")
+        navigate("/home")
       } else {
         // LOGIN
         const res = await API.post("/auth/login", {
@@ -82,7 +82,7 @@ const AuthForm = ({ className, ...props }: React.ComponentProps<"div">) => {
 
         await login(res.data.token)
         toast.success("Login successful")
-        navigate("/dashboard")
+        navigate("/home")
       }
     } catch (error: any) {
       setIsLoading(false)

@@ -1,18 +1,28 @@
-import { LayoutDashboard, CalendarHeart, HeartHandshake } from "lucide-react"
+import {
+  LayoutDashboard,
+  CalendarHeart,
+  HeartHandshake,
+  HomeIcon,
+} from "lucide-react"
 
 export const sidebarLinks = [
   {
-    icon: { LayoutDashboard },
-    route: "/",
+    icon: HomeIcon,
+    route: "/home",
+    label: "Home",
+  },
+  {
+    icon: LayoutDashboard,
+    route: "/dashboard",
     label: "Dashboard",
   },
   {
-    icon: { CalendarHeart },
-    route: "/my-habits",
+    icon: CalendarHeart,
+    route: "/habits",
     label: "My Habits",
   },
   {
-    icon: { HeartHandshake },
+    icon: HeartHandshake,
     route: "/completed-habits",
     label: "Completed Habits",
   },

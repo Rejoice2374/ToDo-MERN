@@ -10,7 +10,7 @@ import { AuthProvider } from "./context/AuthContext.js"
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <AuthProvider>
-      <ThemeProvider>
+      <ThemeProvider defaultTheme="light" storageKey="theme">
         <App />
         <Toaster />
       </ThemeProvider>

@@ -6,7 +6,6 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import Logo from "@/assets/Logo.png"
 
 const Dashboard = () => {
   return (
