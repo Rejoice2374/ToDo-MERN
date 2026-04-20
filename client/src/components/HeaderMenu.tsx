@@ -48,15 +48,16 @@ const HeaderMenu = ({ user }: Userprops) => {
   ]
   return (
     <div className="flex flex-1 items-center justify-between">
-      <h1 className="text-xl">
+      <h1 className="text-xl md:text-2xl">
         Habit<span className="font-bold">Check</span>
       </h1>
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2 md:gap-3">
         <TooltipProvider>
           {HEADER_ACTIONS.map((action) => {
             const Icon = action.icon
             return (
+              // Menu Items
               <Tooltip key={action.label}>
                 <TooltipTrigger asChild>
                   <Button
@@ -79,6 +80,7 @@ const HeaderMenu = ({ user }: Userprops) => {
           })}
         </TooltipProvider>
 
+        {/* User Dropdown Menu */}
         <DropdownMenu>
           <DropdownMenuTrigger aschild className="w-full">
             <Avatar className="h-9 w-9 border-2 border-primary">

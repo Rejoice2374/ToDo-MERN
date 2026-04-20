@@ -43,7 +43,7 @@ const AppSidebar = ({ ...props }: sideBarProps) => {
           </div>
         </div>
         <SidebarSeparator className="mx-0" />
-        <div className="flex-1 space-y-1">
+        <div className="flex-1 space-y-1 px-2">
           {sidebarLinks.map((item) => {
             const isActive =
               location.pathname === item.route ||
