@@ -1,10 +1,12 @@
 import AppSidebar from "@/components/App-sidebar"
+import DashboardStat from "@/components/DashboardStat"
 import { Separator } from "@/components/ui/separator"
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
+import Logo from "@/assets/Logo.png"
 
 const Dashboard = () => {
   return (
@@ -19,11 +21,7 @@ const Dashboard = () => {
           />
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-5">
-            {Array.from({ length: 20 }).map((_, i) => (
-              <div key={i} className="aspect-square rounded-xl bg-muted/50" />
-            ))}
-          </div>
+          <DashboardStat />
         </div>
       </SidebarInset>
     </SidebarProvider>

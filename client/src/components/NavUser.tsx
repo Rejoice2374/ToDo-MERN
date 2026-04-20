@@ -39,13 +39,13 @@ const NavUser = ({ user }: Userprops) => {
             <div className="flex items-center gap-2 p-2">
               <Avatar className="h-8 w-8 rounded-lg">
                 <AvatarImage src={user.avatar} alt={user.firstName} />
-                <AvatarFallback className="rounded-lg">
+                <AvatarFallback className="rounded-full text-primary">
                   {user?.firstName?.[0]}
                   {user?.lastName?.[0]}
                 </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">
+                <span className="truncate font-medium text-primary">
                   {user.firstName} {user.lastName}
                 </span>
                 <span className="truncate text-xs">{user.email}</span>
