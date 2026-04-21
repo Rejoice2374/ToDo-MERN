@@ -1,12 +1,14 @@
 import AppSidebar from "@/components/App-sidebar"
 import HeaderMenu from "@/components/HeaderMenu"
 import HomeContent from "@/components/HomeContent"
+import HabitCards from "@/components/HabitCards"
 import { useAuth } from "@/context/AuthContext"
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
+import { Button } from "@/components/ui/button"
 
 const Home = () => {
   const { user } = useAuth()
@@ -18,8 +20,20 @@ const Home = () => {
           <SidebarTrigger className="-ml-1" />
           <HeaderMenu user={user!} />
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4">
+        <div className="flex flex-col gap-4 p-4">
           <HomeContent />
+          <div className="space-y-4 p-4 md:p-6">
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-semibold">Recent Apps</h2>
+              <Button
+                variant="ghost"
+                className="rounded-2xl border-2 border-primary"
+              >
+                View All
+              </Button>
+            </div>
+            <HabitCards />
+          </div>
         </div>
       </SidebarInset>
     </SidebarProvider>

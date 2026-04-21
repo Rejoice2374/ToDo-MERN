@@ -62,22 +62,49 @@ declare type createHabit = {
 }
 
 declare type HabitsProps = {
-  $id: string
+  _id?: string
   title: string
-  description: string
-  habitualTime: string
-  dueDate: string
-  priority: string
-  category: string
+  description?: string
+  habitualTime?: string
+  dueDate?: string
+  priority?: string
+  category?: string
+  completed?: boolean
+  status?: string
+  completedAt?: string
+  wins?: number
+  streak?: number
+  longestStreak?: number
+  relapseCount?: number
+  lastRelapseAt?: string
+  userId?: string
+}
+
+type Habit = {
+  _id: string
+  title: string
   completed: boolean
-  status: string
-  completedAt: string
-  wins: number
   streak: number
-  longestStreak: number
-  relapseCount: number
-  lastRelapseAt: string
-  userId: string
+  category?: string
+}
+
+type Props = {
+  habit: Habit
+  onToggle: (id: string) => void
+}
+
+type UseHabit = {
+  _id: string
+  title: string
+  completed: boolean
+  streak: number
+  category?: string
+  description?: string
+  habitualTime?: string
+  dueDate?: string
+  priority?: "low" | "medium" | "high"
+  status?: "fighting" | "won" | "relapsed"
+  userId?: string
 }
 
 declare type HabitStatus = {

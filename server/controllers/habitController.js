@@ -96,6 +96,7 @@ export const updateHabit = asyncHandler(async (req, res) => {
   Object.assign(habit, {
     title: req.body.title || habit.title,
     description: req.body.description || habit.description,
+    habitualTime: req.body.habitualTime || habit.habitualTime,
     category: req.body.category || habit.category,
     priority: req.body.priority || habit.priority,
     dueDate: req.body.dueDate || habit.dueDate,
@@ -140,6 +141,10 @@ export const getHabitStats = asyncHandler(async (req, res) => {
 
   const dueSoon = habits.filter(
     (h) => h.dueDate && h.dueDate <= threeDaysLater,
+  );
+
+  const dueSoonCount = habits.filter(
+    (h) => h.dueDate && h.dueDate <= threeDaysLater,
   ).length;
 
   // 5️⃣ Recently relapsed (last 7 days)
@@ -147,6 +152,10 @@ export const getHabitStats = asyncHandler(async (req, res) => {
   sevenDaysAgo.setDate(now.getDate() - 7);
 
   const recentRelapses = habits.filter(
+    (h) => h.lastRelapseAt && h.lastRelapseAt >= sevenDaysAgo,
+  );
+
+  const recentRelapsesCount = habits.filter(
     (h) => h.lastRelapseAt && h.lastRelapseAt >= sevenDaysAgo,
   ).length;
 
@@ -164,8 +173,10 @@ export const getHabitStats = asyncHandler(async (req, res) => {
       longestStreak,
     },
     insights: {
-      dueSoon,
-      recentRelapses,
+      dueSoonCount,
+      recentRelapsesCount,
     },
+    dueSoon,
+    recentRelapses,
   });
 });
