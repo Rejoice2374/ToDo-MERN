@@ -51,7 +51,7 @@ export const useHabits = () => {
   }
 
   // 🔥 ADD NEW HABIT (Optimistic UI) and push to api
-  const addHabit = async (habit) => {
+  const addHabit = async (habit: UseHabit) => {
     // 1. instant UI update with temp ID
     const tempId = `temp-${Date.now()}`
     const newHabit = { ...habit, _id: tempId, completed: false, streak: 0 }

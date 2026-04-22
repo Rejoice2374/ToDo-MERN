@@ -16,7 +16,7 @@ const HabitCard = ({ habit, onToggle }: Props) => {
         <div className="flex items-center gap-3">
           <Checkbox
             checked={habit.completed}
-            onCheckedChange={() => onToggle(habit._id)}
+            onCheckedChange={() => onToggle(habit._id!)}
           />
 
           <div>
