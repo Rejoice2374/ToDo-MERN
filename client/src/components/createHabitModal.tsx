@@ -39,7 +39,9 @@ const CreateHabitModal = () => {
     category: "",
   })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
@@ -131,24 +133,36 @@ const CreateHabitModal = () => {
               onChange={handleChange}
             />
           </div>
+          {/* PRIORITY */}
           <div>
             <Label>Priority</Label>
-            <Input
+            <select
               name="priority"
-              placeholder="e.g. High, Medium, Low"
               value={form.priority}
               onChange={handleChange}
-            />
+              className="mt-2 w-full rounded-md border p-2"
+            >
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
           </div>
 
+          {/* CATEGORY */}
           <div>
             <Label>Category</Label>
-            <Input
+            <select
               name="category"
-              placeholder="e.g. Health"
               value={form.category}
               onChange={handleChange}
-            />
+              className="mt-2 w-full rounded-md border p-2"
+            >
+              <option value="">Select category</option>
+              <option value="work">Work</option>
+              <option value="health">Health</option>
+              <option value="personal">Personal Development</option>
+              <option value="addiction">Addiction</option>
+            </select>
           </div>
 
           <Button type="submit" disabled={loading} className="w-full">
