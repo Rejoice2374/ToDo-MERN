@@ -31,18 +31,15 @@ export const useHabits = () => {
   }, [])
 
   // ⚡ TOGGLE (Optimistic UI)
-  const updateHabitStatus = async (id: string) => {
-    // 1. instant UI update
-    setHabits((prev) =>
-      prev.map((h) => (h._id === id ? { ...h, completed: !h.completed } : h))
-    )
-
+  const updateHabitStatus = async (id: string, status: "won" | "conceded") => {
     try {
-      await toggleHabitAPI(id)
+      const updated = await toggleHabitAPI(id, { status })
+
+      setHabits((prev) => prev.map((h) => (h._id === id ? updated : h)))
     } catch (err) {
       // rollback if error
       setHabits((prev) =>
-        prev.map((h) => (h._id === id ? { ...h, completed: !h.completed } : h))
+        prev.map((h) => (h._id === id ? { ...h, status: h.status } : h))
       )
       toast.error("Failed to update habit", {
         description: (err as Error).message,

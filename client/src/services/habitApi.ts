@@ -7,8 +7,11 @@ export const getHabits = async () => {
 }
 
 // UPDATE habit status
-export const updateHabitStatus = async (id: string) => {
-  const res = await API.put(`/habits/${id}/status`)
+export const updateHabitStatus = async (
+  id: string,
+  { status }: { status: "won" | "conceded" }
+) => {
+  const res = await API.put(`/habits/${id}/status`, { status })
   return res.data
 }
 

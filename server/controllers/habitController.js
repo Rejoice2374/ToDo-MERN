@@ -38,14 +38,23 @@ export const updateHabitStatus = asyncHandler(async (req, res) => {
     return res.status(404).json({ message: "Habit not found" });
   }
 
-  // Ensure user owns habit
   if (habit.user.toString() !== req.user._id.toString()) {
     return res.status(401).json({ message: "Not authorized" });
   }
 
-  // habit.status = status;
+  const today = new Date().toDateString();
 
-  // 🔥 LOGIC BASED ON STATUS
+  // 🚫 prevent multiple clicks per day
+  if (
+    habit.lastActionDate &&
+    new Date(habit.lastActionDate).toDateString() === today
+  ) {
+    return res
+      .status(400)
+      .json({ message: "You already logged today’s action" });
+  }
+
+  // ✅ HANDLE STATUS
   if (status === "won") {
     habit.streak += 1;
     habit.wins += 1;
@@ -58,6 +67,9 @@ export const updateHabitStatus = asyncHandler(async (req, res) => {
     habit.streak = 0;
     habit.lastRelapseAt = new Date();
   }
+
+  habit.status = status;
+  habit.lastActionDate = new Date();
 
   const updatedHabit = await habit.save();
 

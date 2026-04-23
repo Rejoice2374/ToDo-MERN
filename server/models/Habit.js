@@ -75,6 +75,9 @@ const habitSchema = new mongoose.Schema(
     // 🔥 NEW: Last relapse time
     lastRelapseAt: Date,
 
+    // Track last action time for better analytics
+    lastActionDate: Date,
+
     // 🔗 Link to user
     user: {
       type: mongoose.Schema.Types.ObjectId,

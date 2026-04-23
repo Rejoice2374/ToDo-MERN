@@ -90,7 +90,7 @@ type Habit = {
 
 type Props = {
   habit: UseHabit
-  onToggle: (id: string) => void
+  onToggle: (id: string, status: "won" | "conceded") => void
 }
 
 type UseHabit = {
