@@ -54,8 +54,8 @@ declare type AuthContextType = {
 declare type createHabit = {
   title: string
   description: string
-  habitualTime: string
-  dueDate: string
+  habitualTime: Date
+  dueDate: Date
   priority: string
   category: string
   userId: string
@@ -66,8 +66,8 @@ declare type HabitsProps = {
   title: string
   description?: string
   habitualTime?: string
-  dueDate?: string
-  priority?: string
+  dueDate?: Date
+  priority?: Date
   category?: string
   completed?: boolean
   status?: string
@@ -101,7 +101,7 @@ type UseHabit = {
   category?: string
   description?: string
   habitualTime?: string
-  dueDate?: string
+  dueDate?: Date
   priority?: "low" | "medium" | "high"
   status?: "fighting" | "won" | "relapsed"
   userId?: string

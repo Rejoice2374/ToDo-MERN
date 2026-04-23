@@ -15,7 +15,7 @@ const habitSchema = new mongoose.Schema(
 
     // When the urge usually happens
     habitualTime: {
-      type: Date,
+      type: String,
     },
 
     // Optional deadline

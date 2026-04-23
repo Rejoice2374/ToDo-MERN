@@ -6,6 +6,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
@@ -15,14 +22,15 @@ import { toast } from "sonner"
 import { useHabits } from "@/hooks/useHabits"
 
 type Priority = "low" | "medium" | "high"
+type Category = "work" | "health" | "personal" | "addiction"
 
 interface HabitForm {
   title: string
   description: string
   habitualTime: string
-  dueDate: string
+  dueDate: Date
   priority: Priority // Use the specific type here
-  category: string
+  category: Category // Use the specific type here
 }
 
 const CreateHabitModal = () => {
@@ -34,9 +42,9 @@ const CreateHabitModal = () => {
     title: "",
     description: "",
     habitualTime: "",
-    dueDate: "",
+    dueDate: new Date(),
     priority: "medium",
-    category: "",
+    category: "personal",
   })
 
   const handleChange = (
@@ -69,9 +77,9 @@ const CreateHabitModal = () => {
         title: "",
         description: "",
         habitualTime: "",
-        dueDate: "",
+        dueDate: new Date(),
         priority: "medium",
-        category: "",
+        category: "personal",
       })
       setOpen(false)
       return newHabit
@@ -104,6 +112,7 @@ const CreateHabitModal = () => {
               placeholder="e.g. Drink Water"
               value={form.title}
               onChange={handleChange}
+              className="border border-primary focus:ring-2 focus:ring-primary"
             />
           </div>
           <div>
@@ -113,6 +122,7 @@ const CreateHabitModal = () => {
               placeholder="e.g. Drink 8 glasses of water daily"
               value={form.description}
               onChange={handleChange}
+              className="border border-primary focus:ring-2 focus:ring-primary"
             />
           </div>
           <div>
@@ -122,6 +132,7 @@ const CreateHabitModal = () => {
               placeholder="e.g. 30 minutes"
               value={form.habitualTime}
               onChange={handleChange}
+              className="border border-primary focus:ring-2 focus:ring-primary"
             />
           </div>
           <div>
@@ -129,40 +140,58 @@ const CreateHabitModal = () => {
             <Input
               name="dueDate"
               type="date"
-              value={form.dueDate}
+              value={
+                form.dueDate instanceof Date
+                  ? form.dueDate.toISOString().split("T")[0]
+                  : form.dueDate
+              }
               onChange={handleChange}
+              className="border border-primary focus:ring-2 focus:ring-primary"
             />
           </div>
           {/* PRIORITY */}
           <div>
             <Label>Priority</Label>
-            <select
-              name="priority"
+
+            <Select
               value={form.priority}
-              onChange={handleChange}
-              className="mt-2 w-full rounded-md border p-2"
+              onValueChange={(value) =>
+                setForm({ ...form, priority: value as Priority })
+              }
             >
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
-            </select>
+              <SelectTrigger className="mt-2 w-full rounded-md border border-primary p-2 focus:ring-2 focus:ring-primary">
+                <SelectValue placeholder="Select priority" />
+              </SelectTrigger>
+
+              <SelectContent>
+                <SelectItem value="low">🟢 Low</SelectItem>
+                <SelectItem value="medium">🟡 Medium</SelectItem>
+                <SelectItem value="high">🔴 High</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
 
           {/* CATEGORY */}
           <div>
             <Label>Category</Label>
-            <select
-              name="category"
+
+            <Select
               value={form.category}
-              onChange={handleChange}
-              className="mt-2 w-full rounded-md border p-2"
+              onValueChange={(value) =>
+                setForm({ ...form, category: value as Category })
+              }
             >
-              <option value="">Select category</option>
-              <option value="work">Work</option>
-              <option value="health">Health</option>
-              <option value="personal">Personal Development</option>
-              <option value="addiction">Addiction</option>
-            </select>
+              <SelectTrigger className="mt-2 w-full rounded-md border border-primary p-2 focus:ring-2 focus:ring-primary">
+                <SelectValue placeholder="Select category" />
+              </SelectTrigger>
+
+              <SelectContent>
+                <SelectItem value="work">💼 Work</SelectItem>
+                <SelectItem value="health">💪 Health</SelectItem>
+                <SelectItem value="personal">📚 Personal</SelectItem>
+                <SelectItem value="addiction">🚫 Addiction</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
 
           <Button type="submit" disabled={loading} className="w-full">
