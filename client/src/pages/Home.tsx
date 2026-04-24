@@ -24,7 +24,7 @@ const Home = () => {
           <HomeContent />
           <div className="space-y-4 p-4 md:p-6">
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-semibold">Recent Apps</h2>
+              <h2 className="text-2xl font-semibold">Recent Habits</h2>
               <Button
                 variant="ghost"
                 className="rounded-2xl border-2 border-primary"

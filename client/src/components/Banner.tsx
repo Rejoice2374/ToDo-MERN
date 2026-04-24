@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "./ui/button"
+import CreateHabitModal from "./createHabitModal"
 
 const HABIT_QUOTES = [
   {
@@ -74,14 +75,12 @@ const Banner = () => {
             </motion.div>
           </AnimatePresence>
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <Button className="rounded-2xl bg-white text-indigo-700 hover:bg-white/60">
-              Create Task
-            </Button>
+            <CreateHabitModal />
             <Button
               variant="outline"
               className="rounded-2xl border-white bg-transparent text-white hover:bg-white/50"
             >
-              View Tasks
+              View Habits
             </Button>
           </div>
         </div>

@@ -36,6 +36,12 @@ export const useHabits = () => {
       const updated = await toggleHabitAPI(id, { status })
 
       setHabits((prev) => prev.map((h) => (h._id === id ? updated : h)))
+      toast.success("Habit status updated")
+      if (!updated) {
+        toast.error("Failed to update habit status", {
+          description: updated?.message || "Unknown error",
+        })
+      }
     } catch (err) {
       // rollback if error
       setHabits((prev) =>

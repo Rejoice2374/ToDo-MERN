@@ -75,6 +75,7 @@ declare type HabitsProps = {
   wins?: number
   streak?: number
   longestStreak?: number
+  lastActionDate?: Date
   relapseCount?: number
   lastRelapseAt?: string
   userId?: string
@@ -102,8 +103,9 @@ type UseHabit = {
   description?: string
   habitualTime?: string
   dueDate?: Date
+  lastActionDate?: Date
   priority?: "low" | "medium" | "high"
-  status?: "fighting" | "won" | "relapsed"
+  status?: "fighting" | "won" | "conceded"
   userId?: string
 }
 
