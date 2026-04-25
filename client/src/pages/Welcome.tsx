@@ -5,9 +5,13 @@ const Welcome = () => {
   const navigate = useNavigate()
   return (
     <div className="flex h-screen flex-col items-center justify-center bg-background">
-      <div className="mb-6 flex items-center justify-center">
-        <img src={Logo} alt="HabitCheck Logo" />
-        <h1 className="text-[60px]">
+      <div className="md-4 flex items-center justify-center md:mb-6">
+        <img
+          src={Logo}
+          alt="HabitCheck Logo"
+          className="w-16 object-cover md:w-24"
+        />
+        <h1 className="text-[40px] md:text-[60px]">
           Habit<span className="font-bold">Check</span>
         </h1>
       </div>
