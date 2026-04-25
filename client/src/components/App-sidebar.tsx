@@ -10,7 +10,7 @@ import {
   SidebarSeparator,
 } from "@/components/ui/sidebar"
 import { useAuth } from "@/context/AuthContext"
-import Logo from "@/assets/logo.png"
+import Logo from "@/assets/Logo.png"
 import { Input } from "./ui/input"
 import { Search } from "lucide-react"
 import { sidebarLinks } from "@/constants"
