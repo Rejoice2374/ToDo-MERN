@@ -35,7 +35,7 @@ const NavUser = ({ user }: Userprops) => {
     <SidebarMenu>
       <SidebarMenuItem>
         <DropdownMenu>
-          <DropdownMenuTrigger asChild className="w-full">
+          <DropdownMenuTrigger className="w-full">
             <div className="flex items-center gap-2 p-2">
               <Avatar className="h-8 w-8 rounded-lg">
                 <AvatarImage src={user.avatar} alt={user.firstName} />

@@ -59,7 +59,7 @@ const HeaderMenu = ({ user }: Userprops) => {
             return (
               // Menu Items
               <Tooltip key={action.label}>
-                <TooltipTrigger asChild>
+                <TooltipTrigger>
                   <Button
                     variant="ghost"
                     size="icon"
@@ -82,7 +82,7 @@ const HeaderMenu = ({ user }: Userprops) => {
 
         {/* User Dropdown Menu */}
         <DropdownMenu>
-          <DropdownMenuTrigger asChild className="w-full">
+          <DropdownMenuTrigger className="w-full">
             <Avatar className="h-9 w-9 border-2 border-primary">
               <AvatarImage src={user?.avatar} alt={user?.firstName} />
               <AvatarFallback className="rounded-full text-primary">

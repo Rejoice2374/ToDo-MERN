@@ -92,7 +92,7 @@ const CreateHabitModal = () => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+      <DialogTrigger>
         <Button className="flex items-center gap-2">
           <Plus size={16} />
           Add Habit
