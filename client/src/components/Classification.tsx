@@ -27,11 +27,11 @@ const Classifications = ({ classifications }: classificationProps) => {
               defaultOpen={index === 0}
               className="group/collapsible"
             >
-              <SidebarGroupLabel
-                aschild
-                className="group/label w-full text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-              >
-                <CollapsibleTrigger className="flex items-center rounded-sm px-2 py-1">
+              <SidebarGroupLabel className="group/label w-full text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
+                <CollapsibleTrigger
+                  asChild
+                  className="flex items-center rounded-sm px-2 py-1"
+                >
                   {classification.name}{" "}
                   <ChevronRight className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
                 </CollapsibleTrigger>

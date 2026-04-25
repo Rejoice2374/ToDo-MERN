@@ -67,7 +67,7 @@ declare type HabitsProps = {
   description?: string
   habitualTime?: string
   dueDate?: Date
-  priority?: Date
+  priority?: Priority
   category?: string
   completed?: boolean
   status?: string
@@ -90,7 +90,7 @@ type Habit = {
 }
 
 type Props = {
-  habit: UseHabit
+  habit: HabitsProps
   onToggle: (id: string, status: "won" | "conceded") => void
 }
 

@@ -9,7 +9,7 @@ import {
 import { toast } from "sonner"
 
 export const useHabits = () => {
-  const [habits, setHabits] = useState<UseHabit[]>([])
+  const [habits, setHabits] = useState<HabitsProps[]>([])
   const [loading, setLoading] = useState(true)
 
   // 🔥 FETCH HABITS
@@ -54,7 +54,7 @@ export const useHabits = () => {
   }
 
   // 🔥 ADD NEW HABIT (Optimistic UI) and push to api
-  const addHabit = async (habit: UseHabit) => {
+  const addHabit = async (habit: HabitsProps) => {
     // 1. instant UI update with temp ID
     const tempId = `temp-${Date.now()}`
     const newHabit = { ...habit, _id: tempId, completed: false, streak: 0 }
@@ -76,7 +76,7 @@ export const useHabits = () => {
   }
 
   // 🔥 EDIT HABIT (Optimistic UI)
-  const updateHabit = async (id: string, data: UseHabit) => {
+  const updateHabit = async (id: string, data: HabitsProps) => {
     // 1. instant UI update
     setHabits((prev) => prev.map((h) => (h._id === id ? { ...h, ...data } : h)))
 
