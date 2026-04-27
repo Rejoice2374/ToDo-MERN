@@ -81,6 +81,15 @@ declare type HabitsProps = {
   userId?: string
 }
 
+declare interface HabitsContextType {
+  habits: HabitsProps[]
+  loading: boolean
+  addHabit: (habit: HabitsProps) => Promise<void>
+  updateHabit: (id: string, data: HabitsProps) => Promise<void>
+  removeHabit: (id: string) => Promise<void>
+  updateHabitStatus: (id: string, status: "won" | "conceded") => Promise<void>
+}
+
 type Habit = {
   _id: string
   title: string

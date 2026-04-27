@@ -36,7 +36,7 @@ interface HabitForm {
 const CreateHabitModal = () => {
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
-  const { addHabit, fetchHabits } = useHabits() // 🔥 get addHabit from context
+  const { addHabit } = useHabits() // 🔥 get addHabit from context
 
   const [form, setForm] = useState<HabitForm>({
     title: "",

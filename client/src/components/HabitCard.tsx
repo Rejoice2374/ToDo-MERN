@@ -14,7 +14,7 @@ const HabitCard = ({ habit, onToggle }: Props) => {
     <Card
       className={cn(
         "cursor-pointer border-2 border-primary transition-all hover:shadow-md",
-        habit.status === "won" && "border-green-300 bg-green-50"
+        isToday && habit.status === "won" ? "border-green-300 bg-green-50" : ""
       )}
     >
       <CardContent className="flex flex-col justify-between gap-6 px-4">
@@ -24,7 +24,9 @@ const HabitCard = ({ habit, onToggle }: Props) => {
             <h2
               className={cn(
                 "text-xl font-medium",
-                habit.status === "won" && "text-muted-foreground line-through"
+                isToday && habit.status === "won"
+                  ? "text-muted-foreground line-through"
+                  : ""
               )}
             >
               {habit.title}
@@ -51,7 +53,7 @@ const HabitCard = ({ habit, onToggle }: Props) => {
               <BicepsFlexed
                 size={18}
                 className={cn(
-                  "text-primary",
+                  "cursor-pointer text-primary",
                   habit.status === "won" && "text-green-500"
                 )}
                 onClick={() => onToggle(habit._id!, "won")}
@@ -61,7 +63,7 @@ const HabitCard = ({ habit, onToggle }: Props) => {
               <HeartCrack
                 size={18}
                 className={cn(
-                  "text-primary",
+                  "cursor-pointer text-primary",
                   habit.status === "conceded" && "text-red-500"
                 )}
                 onClick={() => onToggle(habit._id!, "conceded")}

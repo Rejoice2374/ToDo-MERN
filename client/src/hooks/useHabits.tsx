@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 import {
   getHabits,
   updateHabitStatus as toggleHabitAPI,
@@ -8,7 +8,9 @@ import {
 } from "@/services/habitApi"
 import { toast } from "sonner"
 
-export const useHabits = () => {
+const HabitContext = createContext<HabitsContextType | null>(null)
+
+export const HabitsProvider = ({ children }: { children: React.ReactNode }) => {
   const [habits, setHabits] = useState<HabitsProps[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -32,10 +34,11 @@ export const useHabits = () => {
 
   // ⚡ TOGGLE (Optimistic UI)
   const updateHabitStatus = async (id: string, status: "won" | "conceded") => {
+    const previousHabit = habits.find((h) => h._id === id)
+    setHabits((prev) => prev.map((h) => (h._id === id ? { ...h, status } : h)))
     try {
       const updated = await toggleHabitAPI(id, { status })
 
-      setHabits((prev) => prev.map((h) => (h._id === id ? updated : h)))
       toast.success("Habit status updated")
       if (!updated) {
         toast.error("Failed to update habit status", {
@@ -44,9 +47,10 @@ export const useHabits = () => {
       }
     } catch (err) {
       // rollback if error
-      setHabits((prev) =>
-        prev.map((h) => (h._id === id ? { ...h, status: h.status } : h))
-      )
+      // 3. Rollback on failure
+      if (previousHabit) {
+        setHabits((prev) => prev.map((h) => (h._id === id ? previousHabit : h)))
+      }
       toast.error("Failed to update habit", {
         description: (err as Error).message,
       })
@@ -117,13 +121,25 @@ export const useHabits = () => {
     }
   }
 
-  return {
-    habits,
-    loading,
-    updateHabitStatus,
-    addHabit,
-    updateHabit,
-    removeHabit,
-    refetch: fetchHabits,
-  }
+  return (
+    <HabitContext.Provider
+      value={{
+        habits,
+        loading,
+        updateHabitStatus,
+        addHabit,
+        updateHabit,
+        removeHabit,
+      }}
+    >
+      {children}
+    </HabitContext.Provider>
+  )
+}
+
+// CUSTOM HOOK
+export const useHabits = () => {
+  const context = useContext(HabitContext)
+  if (!context) throw new Error("UseHabits must be used within HabitsProvider")
+  return context
 }
