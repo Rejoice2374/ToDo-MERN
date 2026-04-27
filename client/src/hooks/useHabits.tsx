@@ -34,10 +34,9 @@ export const HabitsProvider = ({ children }: { children: React.ReactNode }) => {
 
   // ⚡ TOGGLE (Optimistic UI)
   const updateHabitStatus = async (id: string, status: "won" | "conceded") => {
-    const previousHabit = habits.find((h) => h._id === id)
-    setHabits((prev) => prev.map((h) => (h._id === id ? { ...h, status } : h)))
     try {
       const updated = await toggleHabitAPI(id, { status })
+      setHabits((prev) => prev.map((h) => (h._id === id ? updated : h)))
 
       toast.success("Habit status updated")
       if (!updated) {
@@ -47,10 +46,9 @@ export const HabitsProvider = ({ children }: { children: React.ReactNode }) => {
       }
     } catch (err) {
       // rollback if error
-      // 3. Rollback on failure
-      if (previousHabit) {
-        setHabits((prev) => prev.map((h) => (h._id === id ? previousHabit : h)))
-      }
+      setHabits((prev) =>
+        prev.map((h) => (h._id === id ? { ...h, status: h.status } : h))
+      )
       toast.error("Failed to update habit", {
         description: (err as Error).message,
       })
