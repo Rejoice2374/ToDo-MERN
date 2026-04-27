@@ -136,7 +136,7 @@ export const HabitsProvider = ({ children }: { children: React.ReactNode }) => {
 }
 
 // CUSTOM HOOK
-export const useHabits = () => {
+export const UseHabits = () => {
   const context = useContext(HabitContext)
   if (!context) throw new Error("UseHabits must be used within HabitsProvider")
   return context

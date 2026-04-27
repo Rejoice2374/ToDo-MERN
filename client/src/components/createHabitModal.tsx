@@ -19,7 +19,7 @@ import { Label } from "@/components/ui/label"
 import { Plus } from "lucide-react"
 // import { createHabit } from "@/services/habitApi"
 import { toast } from "sonner"
-import { useHabits } from "@/hooks/useHabits"
+import { UseHabits } from "@/hooks/useHabits"
 
 type Priority = "low" | "medium" | "high"
 type Category = "work" | "health" | "personal" | "addiction"
@@ -36,7 +36,7 @@ interface HabitForm {
 const CreateHabitModal = () => {
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
-  const { addHabit } = useHabits() // 🔥 get addHabit from context
+  const { addHabit } = UseHabits() // 🔥 get addHabit from context
 
   const [form, setForm] = useState<HabitForm>({
     title: "",

@@ -1,9 +1,9 @@
 import CreateHabitModal from "./createHabitModal"
 import HabitCard from "./HabitCard"
-import { useHabits } from "@/hooks/useHabits"
+import { UseHabits } from "@/hooks/useHabits"
 
 const HabitCards = () => {
-  const { habits, loading, updateHabitStatus } = useHabits()
+  const { habits, loading, updateHabitStatus } = UseHabits()
 
   if (loading) {
     return <p>Loading habits...</p>
