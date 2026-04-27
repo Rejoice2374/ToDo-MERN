@@ -2,8 +2,10 @@ import CreateHabitModal from "./createHabitModal"
 import HabitCard from "./HabitCard"
 import { UseHabits } from "@/hooks/useHabits"
 
-const HabitCards = () => {
+const HabitCards = ({ limit }: { limit?: number }) => {
   const { habits, loading, updateHabitStatus } = UseHabits()
+
+  const displayedHabits = limit ? habits.slice(0, limit) : habits
 
   if (loading) {
     return <p>Loading habits...</p>
@@ -23,7 +25,7 @@ const HabitCards = () => {
 
   return (
     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
-      {habits.map((habit) => (
+      {displayedHabits.map((habit) => (
         <HabitCard key={habit._id} habit={habit} onToggle={updateHabitStatus} />
       ))}
     </div>

@@ -32,7 +32,7 @@ const Home = () => {
                 View All
               </Button>
             </div>
-            <HabitCards />
+            <HabitCards limit={3} />
           </div>
         </div>
       </SidebarInset>
