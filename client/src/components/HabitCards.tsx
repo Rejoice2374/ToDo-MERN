@@ -2,10 +2,23 @@ import CreateHabitModal from "./createHabitModal"
 import HabitCard from "./HabitCard"
 import { UseHabits } from "@/hooks/useHabits"
 
-const HabitCards = ({ limit }: { limit?: number }) => {
+interface HabitCardsProps {
+  limit?: number
+  category?: string
+}
+
+const HabitCards = ({ limit, category }: HabitCardsProps) => {
   const { habits, loading, updateHabitStatus } = UseHabits()
 
-  const displayedHabits = limit ? habits.slice(0, limit) : habits
+  // Filter habits by Category if provided
+  const filteredHabits = category
+    ? habits.filter((h) => h.category === category)
+    : habits
+
+  // Slice filteredHabits by limit if provided
+  const displayedHabits = limit
+    ? filteredHabits.slice(0, limit)
+    : filteredHabits
 
   if (loading) {
     return <p>Loading habits...</p>
@@ -14,7 +27,20 @@ const HabitCards = ({ limit }: { limit?: number }) => {
     return (
       <div className="flex flex-col items-center justify-center py-10 text-center">
         <p className="mb-4 text-muted-foreground">
-          No habits yet. Start building one 🚀
+          No habits yet. Create one now 👇
+        </p>
+
+        {/* 🔥 Add Create Habit Button */}
+        <CreateHabitModal />
+      </div>
+    )
+  }
+
+  if (!filteredHabits.length) {
+    return (
+      <div className="flex flex-col items-center justify-center py-10 text-center">
+        <p className="mb-4 text-muted-foreground">
+          You have no habits in the {category} category. Create one now 👇
         </p>
 
         {/* 🔥 Add Create Habit Button */}

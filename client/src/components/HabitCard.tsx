@@ -17,8 +17,8 @@ const HabitCard = ({ habit, onToggle }: Props) => {
         isToday && habit.status === "won" ? "border-green-300 bg-green-50" : ""
       )}
     >
-      <CardContent className="flex flex-col justify-between gap-6 px-4">
-        {/* LEFT */}
+      <CardContent className="flex h-full flex-col justify-between gap-6 px-4">
+        {/* Up */}
         <div className="flex flex-col gap-1">
           <div className="flex items-center justify-between">
             <h2
@@ -41,7 +41,7 @@ const HabitCard = ({ habit, onToggle }: Props) => {
           <p className="text-sm text-muted-foreground">{habit.description}</p>
         </div>
 
-        {/* RIGHT */}
+        {/* Down */}
         <div className="flex items-center justify-between gap-3">
           {/* STREAK */}
           <div className="flex items-center gap-1 text-orange-500">
