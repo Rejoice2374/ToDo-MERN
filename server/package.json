@@ -12,7 +12,8 @@
   },
   "scripts": {
     "dev": "nodemon app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "build": "echo \"Error: no build step defined\" && exit 1"
   },
   "name": "server",
   "version": "1.0.0",
