@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const API = axios.create({
-  baseURL: "https://to-do-mern-gilt.vercel.app/api",
+  baseURL: "https://todo-mern-3y68.onrender.com/api",
 })
 
 // Attach token automatically
