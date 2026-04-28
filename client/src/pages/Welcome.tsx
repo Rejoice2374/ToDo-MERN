@@ -1,8 +1,18 @@
 import { useNavigate } from "react-router-dom"
 import Logo from "../assets/Logo.png"
+import { useEffect } from "react"
 
 const Welcome = () => {
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const token = localStorage.getItem("token")
+
+    if (token) {
+      navigate("/home")
+    }
+  }, [])
+
   return (
     <div className="flex h-screen flex-col items-center justify-center bg-background">
       <div className="md-4 flex items-center justify-center md:mb-6">
