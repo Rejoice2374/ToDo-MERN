@@ -13,7 +13,7 @@ const HabitCard = ({ habit, onToggle }: Props) => {
   return (
     <Card
       className={cn(
-        "cursor-pointer border-2 border-primary transition-all hover:shadow-md",
+        "min-w-56 cursor-pointer border-2 border-primary transition-all hover:shadow-md",
         isToday && habit.status === "won" ? "border-green-300 bg-green-50" : ""
       )}
     >

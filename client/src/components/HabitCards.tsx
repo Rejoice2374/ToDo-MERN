@@ -50,10 +50,23 @@ const HabitCards = ({ limit, category }: HabitCardsProps) => {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
-      {displayedHabits.map((habit) => (
-        <HabitCard key={habit._id} habit={habit} onToggle={updateHabitStatus} />
-      ))}
+    <div className="flex flex-col gap-6">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+        {displayedHabits.map((habit) => (
+          <HabitCard
+            key={habit._id}
+            habit={habit}
+            onToggle={updateHabitStatus}
+          />
+        ))}
+      </div>
+      {displayedHabits ? (
+        <div className="flex md:hidden">
+          <CreateHabitModal />
+        </div>
+      ) : (
+        <div></div>
+      )}
     </div>
   )
 }
