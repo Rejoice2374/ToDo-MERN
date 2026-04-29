@@ -2,7 +2,6 @@ import AppSidebar from "@/components/App-sidebar"
 import CreateHabitModal from "@/components/createHabitModal"
 import HabitCards from "@/components/HabitCards"
 import HeaderMenu from "@/components/HeaderMenu"
-import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import {
   SidebarInset,
@@ -11,7 +10,6 @@ import {
 } from "@/components/ui/sidebar"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useAuth } from "@/context/AuthContext"
-import { Download } from "lucide-react"
 import { useState } from "react"
 
 const Habits = () => {
