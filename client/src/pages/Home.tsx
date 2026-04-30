@@ -35,6 +35,13 @@ const Home = () => {
             <HabitCards limit={3} />
           </div>
         </div>
+        {/* Dashboard widgets */}
+        <div className="flex">
+          {/* Categories Chart */}
+          <CategoryChart />
+          {/* Longest streak */}
+          <LongestStreak />
+        </div>
       </SidebarInset>
     </SidebarProvider>
   )
