@@ -9,6 +9,8 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { Button } from "@/components/ui/button"
+import CategoryChart from "@/components/CategoryChart"
+import LongestStreak from "@/components/LongestStreak"
 
 const Home = () => {
   const { user } = useAuth()
@@ -36,7 +38,7 @@ const Home = () => {
           </div>
         </div>
         {/* Dashboard widgets */}
-        <div className="flex">
+        <div className="grid grid-cols-1 gap-8 p-4 md:grid-cols-2 md:p-6">
           {/* Categories Chart */}
           <CategoryChart />
           {/* Longest streak */}

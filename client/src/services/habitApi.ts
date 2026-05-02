@@ -32,3 +32,9 @@ export const deleteHabit = async (id: string) => {
   const res = await API.delete(`/habits/${id}`)
   return res.data
 }
+
+// GET Habit Stats
+export const habitsStats = async () => {
+  const res = await API.get("/habits/stats")
+  return res.data
+}
