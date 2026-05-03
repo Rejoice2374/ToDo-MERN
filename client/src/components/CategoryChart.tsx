@@ -1,21 +1,21 @@
 "use client"
 
-import { TrendingUp } from "lucide-react"
-import { Label, Pie, PieChart } from "recharts"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "./ui/card"
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-  type ChartConfig,
-} from "./ui/chart"
+// import { TrendingUp } from "lucide-react"
+// import { Label, Pie, PieChart } from "recharts"
+// import {
+//   Card,
+//   CardContent,
+//   CardDescription,
+//   CardFooter,
+//   CardHeader,
+//   CardTitle,
+// } from "./ui/card"
+// import {
+//   ChartContainer,
+//   ChartTooltip,
+//   ChartTooltipContent,
+//   type ChartConfig,
+// } from "./ui/chart"
 
 const CategoryChart = () => {
   return (
@@ -23,7 +23,7 @@ const CategoryChart = () => {
       <div className="flex">
         <h2 className="text-2xl font-semibold">Recent Files</h2>
       </div>
-      <Card className="flex flex-col">
+      {/* <Card className="flex flex-col">
         <CardHeader className="items-center pb-0">
           <CardTitle>Pie Chart - Donut with Text</CardTitle>
           <CardDescription>January - June 2024</CardDescription>
@@ -86,7 +86,7 @@ const CategoryChart = () => {
             Showing total visitors for the last 6 months
           </div>
         </CardFooter>
-      </Card>
+      </Card> */}
     </section>
   )
 }
