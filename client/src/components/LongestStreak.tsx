@@ -8,7 +8,7 @@ const LongestStreak = () => {
   return (
     <>
       <div className="flex">
-        <h1>longest Streak</h1>
+        <div>🔥 Longest Streak: {stats?.performance?.longestStreak}</div>
       </div>
     </>
   )

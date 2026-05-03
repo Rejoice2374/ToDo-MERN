@@ -14,6 +14,8 @@ import LongestStreak from "@/components/LongestStreak"
 
 const Home = () => {
   const { user } = useAuth()
+  console.log(user)
+
   return (
     <SidebarProvider>
       <AppSidebar />

@@ -135,36 +135,36 @@ declare type CategoryCount = {
   totalCount: number
 }
 
-declare type statusBreakdown = {
+declare type StatusBreakdown = {
   fighting: number
   won: number
   conceded: number
 }
 
-declare type categoryBreakdown = {
+declare type CategoryBreakdown = {
   work: number
   personal: number
   health: number
   addiction: number
 }
 
-declare type performance = {
+declare type Performance = {
   totalRelapses: number
   totalWins: number
   longestStreak: number
 }
 
-declare type insights = {
+declare type Insights = {
   dueSoon: number
   recentRelapses: number
 }
 
 declare interface StatsProps {
   totalHabits: number
-  statusBreakdown: statusBreakdown[]
-  categoryStats: categoryBreakdown[]
-  performance: performance[]
-  insights: insights[]
+  statusBreakdown: StatusBreakdown
+  categoryStats: CategoryBreakdown
+  performance: Performance
+  insights: Insights
   dueSoon: []
   recentRelapses: []
 }
