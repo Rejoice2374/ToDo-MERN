@@ -166,6 +166,7 @@ declare interface StatsProps {
   performance: performance[]
   insights: insights[]
   dueSoon: []
+  recentRelapses: []
 }
 
 declare type Receiver = {

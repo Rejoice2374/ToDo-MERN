@@ -132,10 +132,10 @@ export const getHabitStats = asyncHandler(async (req, res) => {
   const fighting = habits.filter((h) => h.status === "fighting").length;
   const won = habits.filter((h) => h.status === "won").length;
   const conceded = habits.filter((h) => h.status === "conceded").length;
-  const work = habits.filter((h) => h.priority === "work").length;
-  const personal = habits.filter((h) => h.priority === "personal").length;
-  const health = habits.filter((h) => h.priority === "health").length;
-  const addiction = habits.filter((h) => h.priority === "addiction").length;
+  const work = habits.filter((h) => h.category === "work").length;
+  const personal = habits.filter((h) => h.category === "personal").length;
+  const health = habits.filter((h) => h.category === "health").length;
+  const addiction = habits.filter((h) => h.category === "addiction").length;
 
   // 3️⃣ Performance metrics
   const totalRelapses = habits.reduce(
