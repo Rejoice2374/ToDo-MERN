@@ -23,7 +23,8 @@ const HabitCards = ({ limit, category }: HabitCardsProps) => {
   if (loading) {
     return <p>Loading habits...</p>
   }
-  if (!habits.length) {
+
+  if (!displayedHabits.length) {
     return (
       <div className="flex flex-col items-center justify-center py-10 text-center">
         <p className="mb-4 text-muted-foreground">
@@ -36,7 +37,7 @@ const HabitCards = ({ limit, category }: HabitCardsProps) => {
     )
   }
 
-  if (!filteredHabits.length) {
+  if (!displayedHabits.length) {
     return (
       <div className="flex flex-col items-center justify-center py-10 text-center">
         <p className="mb-4 text-muted-foreground">

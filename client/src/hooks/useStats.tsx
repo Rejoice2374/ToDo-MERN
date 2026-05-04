@@ -4,7 +4,7 @@ import { toast } from "sonner"
 
 export const useStats = () => {
   const [loading, setLoading] = useState(true)
-  const [stats, setStats] = useState<StatsProps[]>([])
+  const [stats, setStats] = useState<StatsProps>()
 
   const getStats = async () => {
     setLoading(true)
