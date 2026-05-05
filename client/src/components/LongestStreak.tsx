@@ -30,8 +30,13 @@ const LongestStreak = () => {
               <p>Loading streak...</p>
             </div>
           ) : (
-            <div className="mx-auto aspect-square max-h-62.5">
-              <Flame className="text-orange-500" size={240} />
+            <div className="mx-auto aspect-square max-h-60">
+              <Flame
+                className={cn(
+                  streak ? "text-orange-500" : "text-muted-foreground"
+                )}
+                size={240}
+              />
             </div>
           )}
         </CardContent>
