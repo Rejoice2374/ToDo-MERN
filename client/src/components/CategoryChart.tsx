@@ -61,9 +61,6 @@ const CategoryChart = () => {
 
   return (
     <section className="space-y-4">
-      <div className="flex">
-        <h2 className="text-2xl font-semibold">Recent Files</h2>
-      </div>
       <Card className="flex flex-col">
         <CardHeader className="items-center pb-0">
           <CardTitle>Category chart</CardTitle>
@@ -74,7 +71,7 @@ const CategoryChart = () => {
         <CardContent className="flex-1 pb-0">
           {loading ? (
             <div>
-              <p>Loading habits...</p>
+              <p>Loading chart...</p>
             </div>
           ) : (
             <ChartContainer
@@ -108,7 +105,7 @@ const CategoryChart = () => {
                               y={viewBox.cy}
                               className="fill-foreground text-3xl font-bold"
                             >
-                              {totalHabits.toLocaleString()}
+                              {totalHabits?.toLocaleString()}
                             </tspan>
                             <tspan
                               x={viewBox.cx}
