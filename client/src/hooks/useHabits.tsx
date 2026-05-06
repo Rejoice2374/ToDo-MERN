@@ -16,6 +16,7 @@ export const HabitsProvider = ({ children }: { children: React.ReactNode }) => {
 
   // 🔥 FETCH HABITS
   const fetchHabits = async () => {
+    setLoading(true)
     try {
       const data = await getHabits()
       setHabits(data)
