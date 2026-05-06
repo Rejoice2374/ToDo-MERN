@@ -20,36 +20,6 @@ const HabitCards = ({ limit, category }: HabitCardsProps) => {
     ? filteredHabits.slice(0, limit)
     : filteredHabits
 
-  // if (loading) {
-  //   return <p>Loading habits...</p>
-  // }
-
-  // if (!loading && habits.length === 0) {
-  //   return (
-  // <div className="flex flex-col items-center justify-center py-10 text-center">
-  //   <p className="mb-4 text-muted-foreground">
-  //     No habits yet. Create one now 👇
-  //   </p>
-
-  //   {/* 🔥 Add Create Habit Button */}
-  //   <CreateHabitModal />
-  // </div>
-  //   )
-  // }
-
-  // if (!loading && displayedHabits.length === 0) {
-  //   return (
-  // <div className="flex flex-col items-center justify-center py-10 text-center">
-  //   <p className="mb-4 text-muted-foreground">
-  //     You have no habits in the {category} category. Create one now 👇
-  //   </p>
-
-  //   {/* 🔥 Add Create Habit Button */}
-  //   <CreateHabitModal />
-  // </div>
-  //   )
-  // }
-
   return (
     <div className="flex flex-col gap-6">
       {loading ? (
