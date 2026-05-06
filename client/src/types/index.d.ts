@@ -165,8 +165,9 @@ declare interface StatsProps {
   categoryBreakdown: CategoryBreakdown
   performance: HabitsPerformance
   insights: Insights
-  dueSoon: []
-  recentRelapses: []
+  dueSoon: HabitsProps[]
+  recentRelapses: HabitsProps[]
+  recentlyCompleted: HabitsProps[]
 }
 
 declare type Receiver = {

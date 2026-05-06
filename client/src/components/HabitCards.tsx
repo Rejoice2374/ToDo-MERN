@@ -24,20 +24,20 @@ const HabitCards = ({ limit, category }: HabitCardsProps) => {
     return <p>Loading habits...</p>
   }
 
-  if (!displayedHabits.length) {
-    return (
-      <div className="flex flex-col items-center justify-center py-10 text-center">
-        <p className="mb-4 text-muted-foreground">
-          No habits yet. Create one now 👇
-        </p>
+  // if (!loading && habits.length === 0) {
+  //   return (
+  //     <div className="flex flex-col items-center justify-center py-10 text-center">
+  //       <p className="mb-4 text-muted-foreground">
+  //         No habits yet. Create one now 👇
+  //       </p>
 
-        {/* 🔥 Add Create Habit Button */}
-        <CreateHabitModal />
-      </div>
-    )
-  }
+  //       {/* 🔥 Add Create Habit Button */}
+  //       <CreateHabitModal />
+  //     </div>
+  //   )
+  // }
 
-  if (!displayedHabits.length) {
+  if (!loading && displayedHabits.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-10 text-center">
         <p className="mb-4 text-muted-foreground">
@@ -61,12 +61,10 @@ const HabitCards = ({ limit, category }: HabitCardsProps) => {
           />
         ))}
       </div>
-      {displayedHabits ? (
+      {displayedHabits.length > 0 && (
         <div className="flex md:hidden">
           <CreateHabitModal />
         </div>
-      ) : (
-        <div></div>
       )}
     </div>
   )

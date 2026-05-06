@@ -175,6 +175,12 @@ export const getHabitStats = asyncHandler(async (req, res) => {
     (h) => h.lastRelapseAt && h.lastRelapseAt >= sevenDaysAgo,
   ).length;
 
+  // Recently Completed (last 3 completed task)
+
+  const recentlyCompleted = habits
+    .filter((h) => h.lastActionDate)
+    .sort((a, b) => b.lastActionDate - a.lastActionDate);
+
   // 6️⃣ Send response
   res.json({
     totalHabits,
@@ -200,5 +206,6 @@ export const getHabitStats = asyncHandler(async (req, res) => {
     },
     dueSoon,
     recentRelapses,
+    recentlyCompleted,
   });
 });

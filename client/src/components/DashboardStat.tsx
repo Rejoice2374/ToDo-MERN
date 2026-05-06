@@ -1,6 +1,8 @@
 import { Separator } from "@/components/ui/separator"
 import CategoryChart from "./CategoryChart"
 import LongestStreak from "./LongestStreak"
+import PerformanceChart from "./PerformanceChart"
+import RecentlyCompleted from "./RecentlyCompleted"
 
 const DashboardStat = () => {
   return (
@@ -20,14 +22,21 @@ const DashboardStat = () => {
       </div>
       <Separator />
       <div className="flex flex-col space-y-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center">
           <h2 className="text-xl font-semibold">Habits Insights</h2>
         </div>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-          {/* Categories Chart */}
-          <CategoryChart />
-          {/* Longest streak */}
-          <LongestStreak />
+          <RecentlyCompleted />
+        </div>
+      </div>
+      <Separator />
+      <div className="flex flex-col space-y-4">
+        <div className="flex items-center">
+          <h2 className="text-xl font-semibold">Habits Insights</h2>
+        </div>
+        <div className="flex">
+          {/* Performance Chart */}
+          <PerformanceChart />
         </div>
       </div>
     </div>
