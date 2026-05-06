@@ -3,6 +3,7 @@ import { Button } from "./ui/button"
 import { motion } from "framer-motion"
 import { Badge } from "./ui/badge"
 import { BicepsFlexed, PackageCheck } from "lucide-react"
+import { getTimeAgo } from "@/lib/utils"
 
 const RecentlyCompleted = () => {
   const { stats, loading } = useStats()
@@ -34,7 +35,7 @@ const RecentlyCompleted = () => {
                     <div>
                       <p className="font-medium">{file.title}</p>
                       <p className="text-sm text-muted-foreground">
-                        {file.status} • {file.completedAt}
+                        {file.status} • {file.completedAt && getTimeAgo(file.completedAt)}
                       </p>
                     </div>
                   </div>
