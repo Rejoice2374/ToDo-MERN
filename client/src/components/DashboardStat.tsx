@@ -3,6 +3,7 @@ import CategoryChart from "./CategoryChart"
 import LongestStreak from "./LongestStreak"
 import PerformanceChart from "./PerformanceChart"
 import RecentlyCompleted from "./RecentlyCompleted"
+import HabitProgress from "./HabitProgress"
 
 const DashboardStat = () => {
   return (
@@ -27,6 +28,7 @@ const DashboardStat = () => {
         </div>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           <RecentlyCompleted />
+          <HabitProgress />
         </div>
       </div>
       <Separator />
