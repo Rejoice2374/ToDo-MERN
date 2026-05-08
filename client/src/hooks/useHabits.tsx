@@ -15,21 +15,20 @@ export const HabitsProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(true)
 
   // 🔥 FETCH HABITS
-  const fetchHabits = async () => {
-    setLoading(true)
-    try {
-      const data = await getHabits()
-      setHabits(data)
-    } catch (err) {
-      toast.error("Failed to fetch habits", {
-        description: (err as Error).message,
-      })
-    } finally {
-      setLoading(false)
-    }
-  }
-
   useEffect(() => {
+    const fetchHabits = async () => {
+      setLoading(true)
+      try {
+        const data = await getHabits()
+        setHabits(data)
+      } catch (err) {
+        toast.error("Failed to fetch habits", {
+          description: (err as Error).message,
+        })
+      } finally {
+        setLoading(false)
+      }
+    }
     fetchHabits()
   }, [])
 
@@ -137,8 +136,8 @@ export const HabitsProvider = ({ children }: { children: React.ReactNode }) => {
 }
 
 // CUSTOM HOOK
-export const UseHabits = () => {
+export const useHabits = () => {
   const context = useContext(HabitContext)
-  if (!context) throw new Error("UseHabits must be used within HabitsProvider")
+  if (!context) throw new Error("useHabits must be used within HabitsProvider")
   return context
 }

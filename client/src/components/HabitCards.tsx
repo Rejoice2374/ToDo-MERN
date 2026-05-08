@@ -1,6 +1,6 @@
 import CreateHabitModal from "./createHabitModal"
 import HabitCard from "./HabitCard"
-import { UseHabits } from "@/hooks/useHabits"
+import { useHabits } from "@/hooks/useHabits"
 
 interface HabitCardsProps {
   limit?: number
@@ -8,11 +8,11 @@ interface HabitCardsProps {
 }
 
 const HabitCards = ({ limit, category }: HabitCardsProps) => {
-  const { habits, loading, updateHabitStatus } = UseHabits()
+  const { habits, loading, updateHabitStatus } = useHabits()
 
   // Filter habits by Category if provided
   const filteredHabits = category
-    ? habits.filter((h) => h.category === category)
+    ? (habits || []).filter((h) => h.category === category)
     : habits
 
   // Slice filteredHabits by limit if provided
