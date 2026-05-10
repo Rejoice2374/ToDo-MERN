@@ -79,6 +79,7 @@ declare type HabitsProps = {
   relapseCount?: number
   lastRelapseAt?: string
   userId?: string
+  createdAt?: string
 }
 
 declare interface HabitsContextType {
@@ -168,6 +169,11 @@ declare interface StatsProps {
   dueSoon: HabitsProps[]
   recentRelapses: HabitsProps[]
   recentlyCompleted: HabitsProps[]
+}
+
+declare interface ProgressCardProps {
+  habits: HabitsProps[]
+  limit: number
 }
 
 declare type Receiver = {

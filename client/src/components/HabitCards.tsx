@@ -10,9 +10,13 @@ interface HabitCardsProps {
 const HabitCards = ({ limit, category }: HabitCardsProps) => {
   const { habits, loading, updateHabitStatus } = useHabits()
 
+  console.log("All habits:", habits)
+
   // Filter habits by Category if provided
   const filteredHabits = category
-    ? (habits || []).filter((h) => h.category === category)
+    ? (habits || [])
+        .filter((h) => h.category === category)
+        .filter((h) => h.completed === true)
     : habits
 
   // Slice filteredHabits by limit if provided

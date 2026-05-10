@@ -25,7 +25,18 @@ export const getHabits = asyncHandler(async (req, res) => {
     createdAt: -1,
   });
 
-  res.json(habits);
+  const updatedHabits = await Promise.all(
+    habits.map(async (habit) => {
+      if (!habit.completed && habit.dueDate < new Date()) {
+        habit.completed = true;
+        await habit.save();
+      }
+
+      return habit;
+    }),
+  );
+
+  res.json(updatedHabits);
 });
 
 // 🔄 Update habit status
