@@ -7,7 +7,9 @@ import { getTimeAgo } from "@/lib/utils"
 
 const RecentlyCompleted = () => {
   const { stats, loading } = useStats()
-  const recentCompletes = stats?.recentlyCompleted
+  const recentCompletes = stats?.recentlyCompleted.filter(
+    (h) => h.completed === false
+  )
   return (
     <section className="space-y-4">
       <div className="flex items-center justify-between">
@@ -35,7 +37,8 @@ const RecentlyCompleted = () => {
                     <div>
                       <p className="font-medium">{file.title}</p>
                       <p className="text-sm text-muted-foreground">
-                        {file.status} • {file.completedAt && getTimeAgo(file.completedAt)}
+                        {file.status} •{" "}
+                        {file.completedAt && getTimeAgo(file.completedAt)}
                       </p>
                     </div>
                   </div>

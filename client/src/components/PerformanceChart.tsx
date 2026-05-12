@@ -1,7 +1,13 @@
 "use client"
 
 import { TrendingUp } from "lucide-react"
-import { Pie, PieChart } from "recharts"
+import {
+  Label,
+  Pie,
+  PieChart,
+  Sector,
+  type PieSectorShapeProps,
+} from "recharts"
 import {
   Card,
   CardContent,
@@ -12,6 +18,8 @@ import {
 } from "./ui/card"
 import {
   ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
@@ -29,9 +37,17 @@ const PerformanceChart = () => {
   console.log(recentCompletes)
 
   const chartData = [
-    { browser: "Relapses", visitors: relapses, fill: "var(--color-relapses)" },
-    { browser: "Wins", visitors: totalWins, fill: "var(--color-wins)" },
-    { browser: "Streak", visitors: longestStreak, fill: "var(--color-streak)" },
+    {
+      browser: "relapses",
+      habits: relapses ?? 0,
+      fill: "var(--color-relapses)",
+    },
+    { browser: "wins", habits: totalWins ?? 0, fill: "var(--color-wins)" },
+    {
+      browser: "streak",
+      habits: longestStreak ?? 0,
+      fill: "var(--color-streak)",
+    },
   ]
 
   const chartConfig = {
@@ -52,13 +68,28 @@ const PerformanceChart = () => {
     },
   } satisfies ChartConfig
 
+  // Find chartData with highest value
+  const highestHabit =
+    chartData.length > 0
+      ? chartData.reduce((prev, curr) =>
+          curr.habits > prev.habits ? curr : prev
+        )
+      : null
+
+  // Find chartData index of highestHabit
+  const chart_index = chartData.findIndex(
+    highestHabit ? (h) => h.browser === highestHabit.browser : () => false
+  )
+
   return (
     <section className="space-y-4">
       <Card className="flex flex-col">
         <CardHeader className="items-center pb-0">
-          <CardTitle>Category chart</CardTitle>
+          <CardTitle className="text-lg">Performance chart</CardTitle>
           <CardDescription>
-            This shows the category you are most interested in improving
+            This shows the how you have been performing in terms of wins,
+            relapses and streaks. Keep up the good work and try to maintain a
+            positive trend!
           </CardDescription>
         </CardHeader>
         <CardContent className="flex-1 pb-0">
@@ -78,11 +109,49 @@ const PerformanceChart = () => {
                 />
                 <Pie
                   data={chartData}
-                  dataKey="visitors"
+                  dataKey="habits"
                   nameKey="browser"
                   innerRadius={60}
                   strokeWidth={5}
-                ></Pie>
+                  shape={({
+                    index,
+                    outerRadius = 0,
+                    ...props
+                  }: PieSectorShapeProps) =>
+                    index === chart_index ? (
+                      <Sector {...props} outerRadius={outerRadius + 10} />
+                    ) : (
+                      <Sector {...props} outerRadius={outerRadius} />
+                    )
+                  }
+                >
+                  <Label
+                    content={({ viewBox }) => {
+                      if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                        return (
+                          <text
+                            x={viewBox.cx}
+                            y={viewBox.cy}
+                            textAnchor="middle"
+                            dominantBaseline="middle"
+                          >
+                            <tspan
+                              x={viewBox.cx}
+                              y={viewBox.cy}
+                              className="fill-foreground text-lg font-bold"
+                            >
+                              Performance
+                            </tspan>
+                          </text>
+                        )
+                      }
+                    }}
+                  />
+                </Pie>
+                <ChartLegend
+                  content={<ChartLegendContent nameKey="browser" />}
+                  className="-translate-y-2 flex-wrap gap-2 *:basis-1/4 *:justify-center"
+                />
               </PieChart>
             </ChartContainer>
           )}
@@ -92,7 +161,7 @@ const PerformanceChart = () => {
             Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
           </div>
           <div className="leading-none text-muted-foreground">
-            Showing total visitors for the last 6 months
+            Showing total habits for the last 6 months
           </div>
         </CardFooter>
       </Card>
