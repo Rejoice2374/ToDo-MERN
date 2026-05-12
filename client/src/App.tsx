@@ -8,6 +8,7 @@ import Habits from "./pages/Habits"
 import CompletedHabits from "./pages/CompletedHabits"
 import ProtectedRoute from "./components/ProtectedRoutes"
 import "./index.css"
+import Landing from "./pages/Landing"
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="/auth" element={<AuthPage />} />
+        <Route path="/landing" element={<Landing />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/home" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />

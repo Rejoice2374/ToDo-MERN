@@ -15,7 +15,7 @@ const Welcome = () => {
 
   return (
     <div className="flex h-screen flex-col items-center justify-center bg-background">
-      <div className="md-4 flex items-center justify-center md:mb-6">
+      <div className="mb-4 flex items-center justify-center md:mb-6">
         <img
           src={Logo}
           alt="HabitCheck Logo"
