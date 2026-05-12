@@ -23,9 +23,6 @@ const DashboardStat = () => {
       </div>
       <Separator />
       <div className="flex flex-col space-y-4">
-        <div className="flex items-center">
-          <h2 className="text-xl font-semibold">Habits Insights</h2>
-        </div>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           <RecentlyCompleted />
           <HabitProgress />

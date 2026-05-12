@@ -102,16 +102,22 @@ const AuthForm = ({ className, ...props }: React.ComponentProps<"div">) => {
           >
             <FieldGroup>
               <div className="flex flex-col items-center gap-2 text-center">
-                <div className="mb-1 flex items-center justify-center md:hidden">
-                  <img
-                    src={Logo}
-                    alt="HabitCheck Logo"
-                    className="w-15 object-cover dark:brightness-[1] dark:grayscale"
-                  />
-                  <h1 className="text-3xl">
-                    Habit<span className="font-bold">Check</span>
-                  </h1>
-                </div>
+                <Button
+                  onClick={() => navigate("/")}
+                  variant="ghost"
+                  className="h-auto px-0"
+                >
+                  <div className="mb-1 flex items-center justify-center md:hidden">
+                    <img
+                      src={Logo}
+                      alt="HabitCheck Logo"
+                      className="w-15 object-cover dark:brightness-[1] dark:grayscale"
+                    />
+                    <h1 className="text-3xl">
+                      Habit<span className="font-bold">Check</span>
+                    </h1>
+                  </div>
+                </Button>
                 <h1 className="text-2xl font-bold">
                   {isLogin ? "Welcome Back" : "Create your account"}
                 </h1>
@@ -260,16 +266,22 @@ const AuthForm = ({ className, ...props }: React.ComponentProps<"div">) => {
                 Learn more <ArrowRight className="inline" />
               </a>
             </div>
-            <div className="mb-6 flex items-center justify-center">
-              <img
-                src={Logo}
-                alt="HabitCheck Logo"
-                className="w-24 object-cover dark:brightness-[1] dark:grayscale"
-              />
-              <h1 className="text-5xl">
-                Habit<span className="font-bold">Check</span>
-              </h1>
-            </div>
+            <Button
+              onClick={() => navigate("/")}
+              variant="ghost"
+              className="h-auto cursor-pointer px-0"
+            >
+              <div className="mb-6 flex items-center justify-center">
+                <img
+                  src={Logo}
+                  alt="HabitCheck Logo"
+                  className="w-24 object-cover dark:brightness-[1] dark:grayscale"
+                />
+                <h1 className="text-5xl">
+                  Habit<span className="font-bold">Check</span>
+                </h1>
+              </div>
+            </Button>
           </div>
         </CardContent>
       </Card>

@@ -13,6 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { Textarea } from "@/components/ui/textarea"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
@@ -48,7 +49,9 @@ const CreateHabitModal = () => {
   })
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     setForm({
       ...form,
@@ -112,17 +115,17 @@ const CreateHabitModal = () => {
               placeholder="e.g. Drink Water"
               value={form.title}
               onChange={handleChange}
-              className="border border-primary focus:ring-2 focus:ring-primary"
+              className="mt-1.5 border border-primary focus:ring-2 focus:ring-primary"
             />
           </div>
           <div>
             <Label>Habit Description</Label>
-            <Input
+            <Textarea
               name="description"
               placeholder="e.g. Drink 8 glasses of water daily"
               value={form.description}
               onChange={handleChange}
-              className="border border-primary focus:ring-2 focus:ring-primary"
+              className="mt-1.5 border border-primary focus:ring-2 focus:ring-primary"
             />
           </div>
           <div>
@@ -132,7 +135,7 @@ const CreateHabitModal = () => {
               placeholder="e.g. 30 minutes"
               value={form.habitualTime}
               onChange={handleChange}
-              className="border border-primary focus:ring-2 focus:ring-primary"
+              className="mt-1.5 border border-primary focus:ring-2 focus:ring-primary"
             />
           </div>
           <div>
@@ -146,7 +149,7 @@ const CreateHabitModal = () => {
                   : form.dueDate
               }
               onChange={handleChange}
-              className="border border-primary focus:ring-2 focus:ring-primary"
+              className="mt-1.5 border border-primary focus:ring-2 focus:ring-primary"
             />
           </div>
           {/* PRIORITY */}
