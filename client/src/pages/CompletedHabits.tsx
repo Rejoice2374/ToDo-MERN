@@ -7,8 +7,6 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import { Button } from "@/components/ui/button"
-import { Link } from "react-router-dom"
 
 const CompletedHabits = () => {
   const { user } = useAuth()
@@ -25,12 +23,6 @@ const CompletedHabits = () => {
           <div className="space-y-4 p-4 md:p-6">
             <div className="flex items-center justify-between">
               <h2 className="text-2xl font-semibold">Completed Habits</h2>
-              <Button
-                variant="ghost"
-                className="rounded-2xl border-2 border-primary"
-              >
-                <Link to="/habits">View All</Link>
-              </Button>
             </div>
             <HabitCards completed={true} />
           </div>
