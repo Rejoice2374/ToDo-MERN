@@ -5,19 +5,18 @@ import { useHabits } from "@/hooks/useHabits"
 interface HabitCardsProps {
   limit?: number
   category?: string
+  completed?: boolean
 }
 
-const HabitCards = ({ limit, category }: HabitCardsProps) => {
+const HabitCards = ({ limit, category, completed }: HabitCardsProps) => {
   const { habits, loading, updateHabitStatus } = useHabits()
-
-  console.log("All habits:", habits)
 
   // Filter habits by Category if provided
   const filteredHabits = category
     ? (habits || [])
         .filter((h) => h.category === category)
-        .filter((h) => h.completed === true)
-    : habits
+        .filter((h) => h.completed === completed)
+    : habits.filter((h) => h.completed === completed)
 
   // Slice filteredHabits by limit if provided
   const displayedHabits = limit

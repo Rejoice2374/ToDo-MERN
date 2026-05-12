@@ -23,7 +23,7 @@ export const sidebarLinks = [
   },
   {
     icon: HeartHandshake,
-    route: "/completed-habits",
+    route: "/completed",
     label: "Completed Habits",
   },
 ]

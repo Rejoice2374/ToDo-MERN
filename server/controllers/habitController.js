@@ -65,6 +65,11 @@ export const updateHabitStatus = asyncHandler(async (req, res) => {
       .json({ message: "You already logged today’s action" });
   }
 
+  // Prevent completed habits from being updated again
+  if (habit.completed) {
+    return res.status(400).json({ message: "This habit is already completed" });
+  }
+
   // ✅ HANDLE STATUS
   if (status === "won") {
     habit.streak += 1;
@@ -192,6 +197,10 @@ export const getHabitStats = asyncHandler(async (req, res) => {
     .filter((h) => h.lastActionDate)
     .sort((a, b) => b.lastActionDate - a.lastActionDate);
 
+  const completedHabits = habits
+    .filter((h) => h.completed === true)
+    .sort((a, b) => b.dueDate - a.dueDate);
+
   // 6️⃣ Send response
   res.json({
     totalHabits,
@@ -218,5 +227,6 @@ export const getHabitStats = asyncHandler(async (req, res) => {
     dueSoon,
     recentRelapses,
     recentlyCompleted,
+    completedHabits,
   });
 });

@@ -1,5 +1,4 @@
 import { motion } from "framer-motion"
-import React from "react"
 import { Badge } from "./ui/badge"
 import { Progress } from "./ui/progress"
 import { FileText, Users } from "lucide-react"

@@ -4,7 +4,7 @@ import ProgressCard from "./ProgressCard"
 
 const HabitProgress = () => {
   const { stats, loading } = useStats()
-  const dueSoon = stats?.dueSoon
+  const dueSoon = stats?.dueSoon.filter((habit) => !habit.completed)
   console.log(loading, dueSoon)
 
   return (

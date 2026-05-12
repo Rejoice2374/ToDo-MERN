@@ -19,7 +19,7 @@ const Habits = () => {
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
-        <header className="sticky top-0 flex h-16 shrink-0 items-center gap-2 border-b bg-background px-4">
+        <header className="sticky top-0 z-100 flex h-16 shrink-0 items-center gap-2 border-b bg-background px-4">
           <SidebarTrigger className="-ml-1" />
           <HeaderMenu user={user!} />
         </header>
@@ -72,7 +72,7 @@ const Habits = () => {
               <TabsContent value="all" className="mt-0 space-y-8">
                 <div className="flex flex-1 flex-col gap-4 p-4">
                   <h2 className="text-xl font-semibold">All Habits</h2>
-                  <HabitCards />
+                  <HabitCards completed={false} />
                 </div>
               </TabsContent>
               <TabsContent value="personal" className="mt-0 space-y-8">
@@ -80,19 +80,19 @@ const Habits = () => {
                   <h2 className="text-xl font-semibold">
                     Personal development Habits
                   </h2>
-                  <HabitCards category="personal" />
+                  <HabitCards category="personal" completed={false} />
                 </div>
               </TabsContent>
               <TabsContent value="health" className="mt-0 space-y-8">
                 <div className="flex flex-1 flex-col gap-4 p-4">
                   <h2 className="text-xl font-semibold">Health-based Habits</h2>
-                  <HabitCards category="health" />
+                  <HabitCards category="health" completed={false} />
                 </div>
               </TabsContent>
               <TabsContent value="work" className="mt-0 space-y-8">
                 <div className="flex flex-1 flex-col gap-4 p-4">
                   <h2 className="text-xl font-semibold">Work-related Habits</h2>
-                  <HabitCards category="work" />
+                  <HabitCards category="work" completed={false} />
                 </div>
               </TabsContent>
               <TabsContent value="addiction" className="mt-0 space-y-8">
@@ -100,7 +100,7 @@ const Habits = () => {
                   <h2 className="text-xl font-semibold">
                     Addiction breaking Habits
                   </h2>
-                  <HabitCards category="Addiction" />
+                  <HabitCards category="Addiction" completed={false} />
                 </div>
               </TabsContent>
             </div>
