@@ -53,14 +53,14 @@ export function Navigation() {
                 alt="HabitCheck Logo"
                 className="w-6 object-cover md:w-8"
               />
-              <h1 className="text-[16px] md:text-[24px]">
+              <h1 className="text-[20px] md:text-[24px]">
                 Habit<span className="font-bold">Check</span>
               </h1>
             </a>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden items-center gap-12 md:flex">
+          <div className="hidden items-center gap-8 md:flex xl:gap-12">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -78,7 +78,7 @@ export function Navigation() {
           {/* Desktop CTA */}
           <div className="hidden items-center gap-4 md:flex">
             <Link
-              to="/auth?type=sign-up"
+              to="/auth?type=sign-in"
               className={`transition-all duration-500 ${isScrolled ? "text-xs text-foreground/70 hover:text-foreground" : "text-sm text-white/70 hover:text-white"}`}
             >
               Sign in
