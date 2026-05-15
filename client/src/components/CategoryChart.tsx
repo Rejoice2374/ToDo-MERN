@@ -27,11 +27,11 @@ const CategoryChart = () => {
   const totalHabits = stats?.totalHabits
 
   const chartData = [
-    { browser: "personal", visitors: personal, fill: "var(--color-personal)" },
-    { browser: "work", visitors: work, fill: "var(--color-work)" },
-    { browser: "health", visitors: health, fill: "var(--color-health)" },
+    { browser: "Personal", visitors: personal, fill: "var(--color-personal)" },
+    { browser: "Work", visitors: work, fill: "var(--color-work)" },
+    { browser: "Health", visitors: health, fill: "var(--color-health)" },
     {
-      browser: "addiction",
+      browser: "Addiction",
       visitors: addiction,
       fill: "var(--color-addiction)",
     },
@@ -59,6 +59,19 @@ const CategoryChart = () => {
     },
   } satisfies ChartConfig
 
+  // Find chartData with highest value
+  const highestHabit =
+    chartData.length > 0
+      ? chartData.reduce((prev, curr) =>
+          (curr.visitors ?? 0) > (prev.visitors ?? 0) ? curr : prev
+        )
+      : null
+
+  // Find chartData index of highestHabit
+  const chart_index = chartData.findIndex(
+    highestHabit ? (h) => h.browser === highestHabit.browser : () => false
+  )
+
   return (
     <section className="space-y-4">
       <Card className="flex flex-col">
@@ -73,7 +86,7 @@ const CategoryChart = () => {
             <div>
               <p>Loading chart...</p>
             </div>
-          ) : (
+          ) : stats ? (
             <ChartContainer
               config={chartConfig}
               className="mx-auto aspect-square max-h-62.5"
@@ -122,14 +135,19 @@ const CategoryChart = () => {
                 </Pie>
               </PieChart>
             </ChartContainer>
+          ) : (
+            <div>
+              <p>No data available.</p>
+            </div>
           )}
         </CardContent>
         <CardFooter className="flex-col gap-2 text-sm">
           <div className="flex items-center gap-2 leading-none font-medium">
-            Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+            {chartData[chart_index]?.browser} is the most popular category{" "}
+            <TrendingUp className="h-4 w-4" />
           </div>
           <div className="leading-none text-muted-foreground">
-            Showing total visitors for the last 6 months
+            Showing the breakdown of your habits by category.
           </div>
         </CardFooter>
       </Card>
