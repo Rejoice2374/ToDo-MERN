@@ -22,7 +22,7 @@ const FeatureCard = ({
         {/* Additional subtle gradient overlay */}
         <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-white/5 to-transparent" />
 
-        <div className="relative z-10 flex h-40.5 flex-col items-start justify-start gap-2 self-stretch p-6">
+        <div className="relative z-10 flex flex-col items-start justify-start gap-2 self-stretch p-6 md:h-40.5">
           <div className="flex flex-col items-start justify-start gap-1.5 self-stretch">
             <p className="self-stretch text-lg leading-7 font-normal text-foreground">
               {title} <br />
