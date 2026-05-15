@@ -118,13 +118,12 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-.no-scrollbar::-webkit-scrollbar {
+/* Hide scrollbar but keep scroll functionality */
+::-webkit-scrollbar {
   display: none;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
-.no-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
+* {
   scrollbar-width: none; /* Firefox */
 }
 
