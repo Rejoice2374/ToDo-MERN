@@ -27,7 +27,7 @@ export function HeroSection() {
           </p>
         </div>
 
-        <Link to="/auth?type=sign-up" target="_blank" rel="noopener noreferrer">
+        <Link to="/auth?type=sign-up" rel="noopener noreferrer">
           <Button className="rounded-full bg-secondary px-8 py-3 text-base font-medium text-secondary-foreground shadow-lg ring-1 ring-white/10 hover:bg-secondary/90">
             Signup for free
           </Button>
