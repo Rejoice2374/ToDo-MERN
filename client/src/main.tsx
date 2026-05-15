@@ -6,17 +6,14 @@ import App from "./App.js"
 import { ThemeProvider } from "@/components/theme-provider.tsx"
 import { Toaster } from "./components/ui/sonner.js"
 import { AuthProvider } from "./context/AuthContext.js"
-import { HabitsProvider } from "@/hooks/useHabits.tsx"
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <AuthProvider>
-      <HabitsProvider>
-        <ThemeProvider defaultTheme="dark" storageKey="theme">
-          <App />
-          <Toaster />
-        </ThemeProvider>
-      </HabitsProvider>
+      <ThemeProvider defaultTheme="dark" storageKey="theme">
+        <App />
+        <Toaster />
+      </ThemeProvider>
     </AuthProvider>
   </StrictMode>
 )

@@ -9,6 +9,7 @@ import CompletedHabits from "./pages/CompletedHabits"
 import ProtectedRoute from "./components/ProtectedRoutes"
 import "./index.css"
 import Landing from "./pages/Landing"
+import { HabitsProvider } from "@/hooks/useHabits.tsx"
 
 function App() {
   return (
@@ -18,10 +19,38 @@ function App() {
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/landing" element={<Landing />} />
         <Route element={<ProtectedRoute />}>
-          <Route path="/home" element={<Home />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/habits" element={<Habits />} />
-          <Route path="/completed" element={<CompletedHabits />} />
+          <Route
+            path="/home"
+            element={
+              <HabitsProvider>
+                <Home />
+              </HabitsProvider>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <HabitsProvider>
+                <Dashboard />
+              </HabitsProvider>
+            }
+          />
+          <Route
+            path="/habits"
+            element={
+              <HabitsProvider>
+                <Habits />
+              </HabitsProvider>
+            }
+          />
+          <Route
+            path="/completed"
+            element={
+              <HabitsProvider>
+                <CompletedHabits />
+              </HabitsProvider>
+            }
+          />
         </Route>
       </Routes>
     </BrowserRouter>
