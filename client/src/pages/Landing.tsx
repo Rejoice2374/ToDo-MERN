@@ -30,14 +30,14 @@ export default function Home() {
           <Features />
         </AnimatedSection>
         <AnimatedSection
-          id="pricing-section"
+          id="pricing"
           className="relative z-10 mx-auto mt-8 max-w-340 md:mt-16"
           delay={0.2}
         >
           <PricingSection />
         </AnimatedSection>
         <AnimatedSection
-          id="faq-section"
+          id="faq"
           className="relative z-10 mx-auto mt-8 max-w-340 md:mt-16"
           delay={0.2}
         >
